@@ -1,21 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Phone, MapPin, Clock, Mail } from 'lucide-react'
-
-const quickLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'Prescriptions', href: '/prescriptions' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-]
-
-const services = [
-  { name: 'Prescription Refills', href: '/prescriptions' },
-  { name: 'Transfer Prescriptions', href: '/prescriptions#transfer' },
-  { name: 'Immunizations', href: '/services#immunizations' },
-  { name: 'Medication Counseling', href: '/services#counseling' },
-]
+import { company, contactInfo, hours, navigation } from '@/content'
 
 export default function Footer() {
   return (
@@ -26,8 +12,8 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center mb-4">
               <Image
-                src="/images/logo.png"
-                alt="River Park Pharmacy"
+                src="/images/mainLogo/logo.png"
+                alt={company.name}
                 width={56}
                 height={56}
                 className="w-14 h-14 bg-white rounded-full p-1"
@@ -42,8 +28,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Your trusted neighborhood pharmacy providing personalized care and
-              exceptional service to our community since day one.
+              {company.description}
             </p>
             <div className="flex items-center text-sm text-gray-400">
               <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
@@ -57,13 +42,13 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
+              {navigation.footer.quickLinks.map((link) => (
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
                   >
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -76,13 +61,13 @@ export default function Footer() {
               Our Services
             </h3>
             <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service.name}>
+              {navigation.footer.services.map((service) => (
+                <li key={service.label}>
                   <Link
                     href={service.href}
                     className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
                   >
-                    {service.name}
+                    {service.label}
                   </Link>
                 </li>
               ))}
@@ -98,39 +83,40 @@ export default function Footer() {
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 text-pharmacy-red mr-3 mt-0.5 flex-shrink-0" />
                 <span className="text-gray-400 text-sm">
-                  123 River Park Drive
+                  {contactInfo.address.street}
                   <br />
-                  Suite 100
+                  {contactInfo.address.suite}
                   <br />
-                  Your City, ST 12345
+                  {contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zip}
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-pharmacy-red mr-3 flex-shrink-0" />
                 <a
-                  href="tel:+15551234567"
+                  href={contactInfo.phoneLink}
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  (555) 123-4567
+                  {contactInfo.phone}
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 text-pharmacy-red mr-3 flex-shrink-0" />
                 <a
-                  href="mailto:info@riverparkpharmacy.com"
+                  href={`mailto:${contactInfo.email}`}
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  info@riverparkpharmacy.com
+                  {contactInfo.email}
                 </a>
               </li>
               <li className="flex items-start">
                 <Clock className="w-5 h-5 text-pharmacy-red mr-3 mt-0.5 flex-shrink-0" />
                 <span className="text-gray-400 text-sm">
-                  Mon - Fri: 9:00 AM - 7:00 PM
-                  <br />
-                  Saturday: 9:00 AM - 5:00 PM
-                  <br />
-                  Sunday: Closed
+                  {hours.formatted.map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      {index < hours.formatted.length - 1 && <br />}
+                    </span>
+                  ))}
                 </span>
               </li>
             </ul>
@@ -141,22 +127,19 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} River Park Pharmacy, LLC. All
+              &copy; {new Date().getFullYear()} {company.name}, LLC. All
               rights reserved.
             </p>
             <div className="flex items-center space-x-6">
-              <Link
-                href="/privacy"
-                className="text-gray-500 hover:text-white transition-colors text-sm"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-gray-500 hover:text-white transition-colors text-sm"
-              >
-                Terms of Service
-              </Link>
+              {navigation.footer.legal.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-gray-500 hover:text-white transition-colors text-sm"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

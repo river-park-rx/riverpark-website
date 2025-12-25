@@ -14,42 +14,7 @@ import {
 } from 'lucide-react'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import Button from '@/components/ui/Button'
-
-const refillSteps = [
-  {
-    step: 1,
-    title: 'Submit Your Request',
-    description:
-      'Fill out the refill form below with your prescription details and contact information.',
-  },
-  {
-    step: 2,
-    title: 'We Process Your Order',
-    description:
-      'Our pharmacists will verify your prescription and prepare your medication.',
-  },
-  {
-    step: 3,
-    title: 'Get Notified',
-    description:
-      'We\'ll contact you when your prescription is ready for pickup.',
-  },
-  {
-    step: 4,
-    title: 'Pick Up or Get Delivery',
-    description:
-      'Visit our pharmacy to collect your prescription, or opt for free local delivery right to your door.',
-  },
-]
-
-const transferBenefits = [
-  'We handle all the paperwork',
-  'No interruption in your medications',
-  'Insurance verification included',
-  'Same-day transfer available',
-  'Free local delivery option',
-  'Medication savings review',
-]
+import { prescriptions, contactInfo, hours } from '@/content'
 
 export default function PrescriptionsPage() {
   const [formData, setFormData] = useState({
@@ -94,10 +59,7 @@ export default function PrescriptionsPage() {
               <span className="text-medical-blue">Transfers</span>
             </h1>
             <p className="body-text mb-8">
-              Managing your prescriptions has never been easier. Submit a refill
-              request online, transfer your prescriptions to us, or simply give
-              us a call. Plus, we'll help you find the best price and coordinate
-              your insurance benefits.
+              {prescriptions.hero.subtitle}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a href="#refill-form" className="btn-primary">
@@ -108,7 +70,7 @@ export default function PrescriptionsPage() {
                 <RefreshCw className="w-5 h-5 mr-2" />
                 Transfer Prescription
               </a>
-              <a href="tel:+15551234567" className="btn-outline">
+              <a href={contactInfo.phoneLink} className="btn-outline">
                 <Phone className="w-5 h-5 mr-2" />
                 Call to Refill
               </a>
@@ -129,7 +91,7 @@ export default function PrescriptionsPage() {
           </AnimatedSection>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {refillSteps.map((item, index) => (
+            {prescriptions.refillSteps.map((item, index) => (
               <AnimatedSection key={item.step} delay={index * 0.1}>
                 <div className="bg-white rounded-xl p-6 h-full shadow-md hover:shadow-lg transition-shadow">
                   <div className="w-12 h-12 bg-pharmacy-red rounded-full flex items-center justify-center text-white font-montserrat font-bold text-lg mb-4">
@@ -226,7 +188,7 @@ export default function PrescriptionsPage() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors"
-                      placeholder="(555) 123-4567"
+                      placeholder={contactInfo.phone}
                     />
                   </div>
                   <div>
@@ -355,7 +317,7 @@ export default function PrescriptionsPage() {
                 your prescriptions are coming from.
               </p>
               <ul className="space-y-3 mb-8">
-                {transferBenefits.map((benefit, index) => (
+                {prescriptions.transferBenefits.map((benefit, index) => (
                   <li key={index} className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">{benefit}</span>
@@ -367,7 +329,7 @@ export default function PrescriptionsPage() {
                   Request Transfer
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
-                <Button href="tel:+15551234567" variant="secondary">
+                <Button href={contactInfo.phoneLink} variant="secondary">
                   <Phone className="w-4 h-4 mr-2" />
                   Call to Transfer
                 </Button>
@@ -439,15 +401,15 @@ export default function PrescriptionsPage() {
             </p>
             <div className="flex flex-col items-center gap-4">
               <a
-                href="tel:+15551234567"
+                href={contactInfo.phoneLink}
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-pharmacy-red font-montserrat font-semibold text-xl rounded-lg hover:bg-gray-100 transition-colors"
               >
                 <Phone className="w-6 h-6 mr-3" />
-                (555) 123-4567
+                {contactInfo.phone}
               </a>
               <div className="flex items-center text-white/80 text-sm">
                 <Clock className="w-4 h-4 mr-2" />
-                Mon-Fri 9AM-7PM | Sat 9AM-5PM
+                {hours.weekday.days} {hours.weekday.open}-{hours.weekday.close} | {hours.saturday.days} {hours.saturday.open}-{hours.saturday.close}
               </div>
             </div>
           </AnimatedSection>

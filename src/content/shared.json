@@ -1,0 +1,145 @@
+{
+  "company": {
+    "name": "River Park Pharmacy",
+    "tagline": "Your Neighborhood Pharmacy",
+    "description": "Your trusted neighborhood pharmacy providing personalized care and expert guidance for all your medication needs.",
+    "founded": "2010"
+  },
+  "contact": {
+    "phone": "(555) 123-4567",
+    "phoneLink": "tel:+15551234567",
+    "fax": "(555) 123-4568",
+    "email": "info@riverparkpharmacy.com",
+    "refillEmail": "refills@riverparkpharmacy.com",
+    "privacyEmail": "privacy@riverparkpharmacy.com",
+    "address": {
+      "street": "1818 Cedar Ave",
+      "suite": "",
+      "city": "Bronx",
+      "state": "NY",
+      "zip": "10453",
+      "full": "1818 Cedar Ave, Bronx, NY 10453, USA",
+      "mapUrl": "https://maps.app.goo.gl/g8g5UBj93JhQnbnNA",
+      "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.8682795993304!2d-73.92254212414971!3d40.85281567137277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2f411a6c734a1%3A0x25ec7e9b1c761bc8!2sRiver%20Park%20Pharmacy!5e0!3m2!1sen!2sin!4v1766677835357!5m2!1sen!2sin"
+    }
+  },
+  "hours": {
+    "weekday": {
+      "days": "Monday - Friday",
+      "open": "9:00 AM",
+      "close": "7:00 PM"
+    },
+    "saturday": {
+      "days": "Saturday",
+      "open": "9:00 AM",
+      "close": "5:00 PM"
+    },
+    "sunday": {
+      "days": "Sunday",
+      "status": "Closed"
+    },
+    "formatted": [
+      "Monday - Friday: 9:00 AM - 7:00 PM",
+      "Saturday: 9:00 AM - 5:00 PM",
+      "Sunday: Closed"
+    ]
+  },
+  "social": {
+    "facebook": "https://facebook.com",
+    "instagram": "https://instagram.com",
+    "twitter": "https://twitter.com"
+  },
+  "navigation": {
+    "main": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "label": "Prescriptions",
+        "href": "/prescriptions"
+      },
+      {
+        "label": "About Us",
+        "href": "/about"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "footer": {
+      "quickLinks": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "About Us",
+          "href": "/about"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        },
+        {
+          "label": "Prescriptions",
+          "href": "/prescriptions"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "services": [
+        {
+          "label": "Prescription Refills",
+          "href": "/prescriptions"
+        },
+        {
+          "label": "Transfer Prescriptions",
+          "href": "/prescriptions"
+        },
+        {
+          "label": "Immunizations",
+          "href": "/services"
+        },
+        {
+          "label": "Free Delivery",
+          "href": "/services"
+        }
+      ],
+      "legal": [
+        {
+          "label": "Privacy Policy",
+          "href": "/privacy"
+        },
+        {
+          "label": "Terms of Service",
+          "href": "/terms"
+        }
+      ]
+    }
+  },
+  "seo": {
+    "title": "River Park Pharmacy | Your Trusted Neighborhood Pharmacy",
+    "description": "River Park Pharmacy offers personalized prescription services, immunizations, free delivery, and expert medication guidance. Your trusted neighborhood pharmacy.",
+    "keywords": [
+      "pharmacy",
+      "prescription",
+      "medication",
+      "drugstore",
+      "immunizations",
+      "vaccines",
+      "prescription refill",
+      "transfer prescription",
+      "pharmacy near me",
+      "local pharmacy",
+      "River Park Pharmacy"
+    ]
+  }
+}

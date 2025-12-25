@@ -1,0 +1,68 @@
+{
+  "hero": {
+    "title": "About Us",
+    "titleHighlight": "Us",
+    "subtitle": "More than a pharmacy - we're your neighbors, committed to providing exceptional healthcare to our community since 2010."
+  },
+  "story": {
+    "title": "Our Story",
+    "content": [
+      "River Park Pharmacy was founded with a simple mission: to bring back the personal touch that modern pharmacy has lost. We believe that healthcare should be about relationships, not transactions.",
+      "Since opening our doors, we've served thousands of patients, becoming a trusted healthcare partner for families throughout our community. Our pharmacists know your name, your medications, and your health goals.",
+      "We're proud to be an independent pharmacy, which means we have the freedom to put patients first. No corporate mandates, no rushing through consultations - just genuine care from people who truly want to help you feel your best."
+    ]
+  },
+  "values": [
+    {
+      "title": "Compassionate Care",
+      "description": "We treat every patient like family, taking the time to listen, understand, and provide personalized attention to your health needs."
+    },
+    {
+      "title": "Excellence",
+      "description": "We maintain the highest standards in pharmacy practice, continuously improving our services and staying current with the latest healthcare advances."
+    },
+    {
+      "title": "Community",
+      "description": "We're deeply rooted in our community, supporting local initiatives and building lasting relationships with the families we serve."
+    },
+    {
+      "title": "Trust & Integrity",
+      "description": "We operate with complete transparency and honesty, always putting your health and well-being above all else."
+    }
+  ],
+  "team": [
+    {
+      "name": "Dr. Sarah Johnson",
+      "role": "Lead Pharmacist & Owner",
+      "bio": "With over 20 years of experience, Dr. Johnson founded River Park Pharmacy to provide the personalized care she believes every patient deserves.",
+      "image": "/images/team/pharmacist-1.jpg"
+    },
+    {
+      "name": "Dr. Michael Chen",
+      "role": "Clinical Pharmacist",
+      "bio": "Specializing in medication therapy management, Dr. Chen helps patients optimize their medication regimens for better health outcomes.",
+      "image": "/images/team/pharmacist-2.jpg"
+    },
+    {
+      "name": "Emily Rodriguez",
+      "role": "Pharmacy Manager",
+      "bio": "Emily ensures our pharmacy runs smoothly, coordinating our team to provide efficient, friendly service to every patient.",
+      "image": "/images/team/manager.jpg"
+    }
+  ],
+  "community": [
+    "Annual health fairs and free screenings",
+    "Medication take-back programs",
+    "School health education programs",
+    "Senior center wellness presentations",
+    "Local sports team sponsorships",
+    "Food bank and charity drives",
+    "Free blood pressure clinics"
+  ],
+  "stats": [
+    { "value": "15+", "label": "Years Serving Community" },
+    { "value": "50K+", "label": "Prescriptions Filled Yearly" },
+    { "value": "10K+", "label": "Happy Patients" },
+    { "value": "100%", "label": "Commitment to Care" }
+  ]
+}

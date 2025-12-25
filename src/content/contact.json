@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "title": "Get in Touch",
+    "titleHighlight": "Touch",
+    "subtitle": "Have questions about your prescriptions or our services? We'd love to hear from you. Reach out by phone, email, or visit us in person."
+  },
+  "formSubjects": [
+    { "value": "prescription", "label": "Prescription Inquiry" },
+    { "value": "refill", "label": "Refill Request" },
+    { "value": "transfer", "label": "Transfer Prescription" },
+    { "value": "services", "label": "Services Question" },
+    { "value": "other", "label": "Other" }
+  ],
+  "faq": [
+    "How do I transfer my prescriptions?",
+    "What insurance plans do you accept?",
+    "Do you offer delivery services?",
+    "How long does a refill take?",
+    "Do you compound medications?",
+    "What vaccines do you provide?"
+  ]
+}

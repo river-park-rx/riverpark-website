@@ -19,7 +19,7 @@ export default function NotFound() {
             {/* Logo */}
             <Link href="/" className="inline-block mb-8">
               <Image
-                src="/images/logo.png"
+                src="/images/mainLogo/logo.png"
                 alt="River Park Pharmacy"
                 width={100}
                 height={100}

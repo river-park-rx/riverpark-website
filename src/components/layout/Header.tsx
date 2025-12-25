@@ -6,14 +6,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'Prescriptions', href: '/prescriptions' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-]
+import { company, contactInfo, navigation as navContent } from '@/content'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -32,19 +25,30 @@ export default function Header() {
     setIsOpen(false)
   }, [pathname])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-white/95'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/95'
+        }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/logo.png"
-              alt="River Park Pharmacy"
+              src="/images/mainLogo/logo.png"
+              alt={company.name}
               width={60}
               height={60}
               className="w-12 h-12 md:w-14 md:h-14"
@@ -62,17 +66,16 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item) => (
+            {navContent.main.map((item) => (
               <Link
-                key={item.name}
+                key={item.label}
                 href={item.href}
-                className={`font-montserrat font-medium text-sm transition-colors duration-200 ${
-                  pathname === item.href
-                    ? 'text-pharmacy-red'
-                    : 'text-gray-700 hover:text-pharmacy-red'
-                }`}
+                className={`font-montserrat font-medium text-sm transition-colors duration-200 ${pathname === item.href
+                  ? 'text-pharmacy-red'
+                  : 'text-gray-700 hover:text-pharmacy-red'
+                  }`}
               >
-                {item.name}
+                {item.label}
               </Link>
             ))}
           </nav>
@@ -80,11 +83,11 @@ export default function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-4">
             <a
-              href="tel:+15551234567"
+              href={contactInfo.phoneLink}
               className="flex items-center text-medical-blue font-montserrat font-medium text-sm hover:text-medical-blue-dark transition-colors"
             >
               <Phone className="w-4 h-4 mr-2" />
-              (555) 123-4567
+              {contactInfo.phone}
             </a>
             <Link href="/prescriptions" className="btn-primary text-sm">
               Refill Prescription
@@ -94,8 +97,9 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:text-pharmacy-red transition-colors"
+            className="lg:hidden p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-700 hover:text-pharmacy-red active:scale-95 transition-all"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -113,26 +117,25 @@ export default function Header() {
             className="lg:hidden bg-white border-t shadow-lg overflow-hidden"
           >
             <nav className="container-custom py-4 space-y-2">
-              {navigation.map((item) => (
+              {navContent.main.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.label}
                   href={item.href}
-                  className={`block py-3 px-4 rounded-lg font-montserrat font-medium transition-colors ${
-                    pathname === item.href
-                      ? 'text-pharmacy-red bg-red-50'
-                      : 'text-gray-700 hover:text-pharmacy-red hover:bg-gray-50'
-                  }`}
+                  className={`block py-3 px-4 rounded-lg font-montserrat font-medium transition-colors ${pathname === item.href
+                    ? 'text-pharmacy-red bg-red-50'
+                    : 'text-gray-700 hover:text-pharmacy-red hover:bg-gray-50'
+                    }`}
                 >
-                  {item.name}
+                  {item.label}
                 </Link>
               ))}
               <div className="pt-4 mt-4 border-t space-y-3">
                 <a
-                  href="tel:+15551234567"
+                  href={contactInfo.phoneLink}
                   className="flex items-center py-3 px-4 text-medical-blue font-montserrat font-medium"
                 >
                   <Phone className="w-5 h-5 mr-3" />
-                  (555) 123-4567
+                  {contactInfo.phone}
                 </a>
                 <Link
                   href="/prescriptions"

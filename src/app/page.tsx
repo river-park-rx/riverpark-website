@@ -26,134 +26,35 @@ import ServiceCard from '@/components/ui/ServiceCard'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Button from '@/components/ui/Button'
+import { company, contactInfo, hours, homepage } from '@/content'
 
-const services = [
-  {
-    icon: <Pill className="w-7 h-7" />,
-    title: 'Prescription Refills',
-    description:
-      'Quick and easy prescription refills. Submit online, call us, or use our mobile-friendly system — your medication will be ready when you arrive.',
-    href: '/prescriptions',
-  },
-  {
-    icon: <RefreshCw className="w-7 h-7" />,
-    title: 'Transfer Prescriptions',
-    description:
-      'Switching pharmacies? We handle everything — just give us your information and we\'ll take care of the rest.',
-    href: '/prescriptions#transfer',
-  },
-  {
-    icon: <Syringe className="w-7 h-7" />,
-    title: 'Immunizations & Vaccines',
-    description:
-      'Stay protected with our comprehensive vaccination services. Walk-ins welcome for flu shots, COVID-19, shingles, and more.',
-    href: '/services#immunizations',
-  },
-  {
-    icon: <Truck className="w-7 h-7" />,
-    title: 'Free Local Delivery',
-    description:
-      'Can\'t make it to the pharmacy? We offer free prescription delivery to your home or office within our service area.',
-    href: '/services#delivery',
-  },
-]
+// Icon mapping for services
+const serviceIcons: Record<string, React.ReactNode> = {
+  'Prescription Refills': <Pill className="w-7 h-7" />,
+  'Transfer Prescriptions': <RefreshCw className="w-7 h-7" />,
+  'Immunizations & Vaccines': <Syringe className="w-7 h-7" />,
+  'Free Delivery': <Truck className="w-7 h-7" />,
+}
 
-const whyChooseUs = [
-  {
-    icon: <Heart className="w-6 h-6" />,
-    title: 'Personalized Care',
-    description:
-      'We take the time to understand your unique health needs and provide tailored solutions that work for you.',
-  },
-  {
-    icon: <DollarSign className="w-6 h-6" />,
-    title: 'Medication Savings',
-    description:
-      'Our pharmacists help you find the best prices and coordinate your benefits to maximize savings.',
-  },
-  {
-    icon: <Clock className="w-6 h-6" />,
-    title: 'Fast & Convenient',
-    description:
-      'Multiple ways to refill — online, by phone, or in person. Plus free local delivery right to your door.',
-  },
-  {
-    icon: <ShieldCheck className="w-6 h-6" />,
-    title: 'Expert Guidance',
-    description:
-      'Our knowledgeable pharmacists are always available to answer questions and provide medication counseling.',
-  },
-]
+// Icon mapping for why choose us
+const whyChooseUsIcons: Record<string, React.ReactNode> = {
+  'Personalized Care': <Heart className="w-6 h-6" />,
+  'Medication Savings': <DollarSign className="w-6 h-6" />,
+  'Fast & Convenient': <Clock className="w-6 h-6" />,
+  'Expert Guidance': <ShieldCheck className="w-6 h-6" />,
+}
 
-const trustSignals = [
-  'Licensed & Certified Pharmacists',
-  'Most Insurance Plans Accepted',
-  'Free Local Delivery',
-  'Medication Savings Programs',
-]
-
-const testimonials = [
-  {
-    name: 'Maria S.',
-    rating: 5,
-    text: 'The pharmacists here truly care about their customers. They took the time to explain my medications and even helped me find a more affordable option. Best pharmacy experience I\'ve ever had!',
-    image: '/images/testimonials/maria.jpg',
-    initials: 'MS',
-  },
-  {
-    name: 'James T.',
-    rating: 5,
-    text: 'I switched from a big chain pharmacy and the difference is night and day. Free delivery, no long waits, and they actually know my name. Highly recommend River Park Pharmacy!',
-    image: '/images/testimonials/james.jpg',
-    initials: 'JT',
-  },
-  {
-    name: 'Linda M.',
-    rating: 5,
-    text: 'The pill packaging service has been a lifesaver for my elderly mother. Everything is organized by day and time — no more confusion about which medications to take. Thank you!',
-    image: '/images/testimonials/linda.jpg',
-    initials: 'LM',
-  },
-  {
-    name: 'Robert K.',
-    rating: 5,
-    text: 'After my surgery, the team helped coordinate all my new medications and even called to check on me. You don\'t get that kind of service from the big chains. Forever grateful!',
-    image: '/images/testimonials/robert.jpg',
-    initials: 'RK',
-  },
-  {
-    name: 'Susan W.',
-    rating: 5,
-    text: 'They saved me over $200 a month by finding generic alternatives and manufacturer coupons. The pharmacist took the time to review all my medications — amazing service!',
-    image: '/images/testimonials/susan.jpg',
-    initials: 'SW',
-  },
-  {
-    name: 'David L.',
-    rating: 5,
-    text: 'My dog needed compounded medication that other pharmacies couldn\'t provide. River Park made it happen within 24 hours. They truly go above and beyond!',
-    image: '/images/testimonials/david.jpg',
-    initials: 'DL',
-  },
-  {
-    name: 'Patricia H.',
-    rating: 5,
-    text: 'The immunization process was quick and painless. No appointment needed, and the pharmacist was so friendly and professional. Got my flu shot in under 10 minutes!',
-    image: '/images/testimonials/patricia.jpg',
-    initials: 'PH',
-  },
-  {
-    name: 'Michael R.',
-    rating: 5,
-    text: 'As someone with multiple chronic conditions, having a pharmacy that knows my history is invaluable. They catch potential drug interactions and always have my medications ready on time.',
-    image: '/images/testimonials/michael.jpg',
-    initials: 'MR',
-  },
-]
+// Testimonials with initials for fallback display
+const testimonials = homepage.testimonials.map((t) => ({
+  ...t,
+  initials: t.name.split(' ').map(n => n[0]).join(''),
+}))
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % testimonials.length)
@@ -166,6 +67,32 @@ export default function Home() {
   const goToSlide = (index: number) => {
     setCurrentSlide(index)
     setIsAutoPlaying(false)
+  }
+
+  // Touch handlers for swipe
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    if (isLeftSwipe) {
+      nextSlide()
+      setIsAutoPlaying(false)
+    } else if (isRightSwipe) {
+      prevSlide()
+      setIsAutoPlaying(false)
+    }
   }
 
   // Auto-play functionality
@@ -188,20 +115,20 @@ export default function Home() {
             >
               <h1 className="heading-1 text-gray-900 mb-6">
                 Your Health, Our Priority:{' '}
-                <span className="text-pharmacy-red">Your Trusted Neighborhood Pharmacy</span>
+                <span className="text-pharmacy-red">{company.tagline}</span>
               </h1>
               <p className="body-text mb-8 max-w-xl">
-                At River Park Pharmacy, we deliver personalized care with a
-                personal touch. From free local delivery to medication savings
+                At {company.name}, we deliver personalized care with a
+                personal touch. From free delivery to medication savings
                 programs, our dedicated pharmacists go the extra mile to support
                 your health journey.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button href="/prescriptions" size="lg">
-                  Refill Prescription
+                  {homepage.hero.primaryCta}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                <Button href="tel:+15551234567" variant="secondary" size="lg">
+                <Button href={contactInfo.phoneLink} variant="secondary" size="lg">
                   <Phone className="w-5 h-5 mr-2" />
                   Call the Pharmacy
                 </Button>
@@ -248,10 +175,10 @@ export default function Home() {
                       Need help? Call us:
                     </p>
                     <a
-                      href="tel:+15551234567"
+                      href={contactInfo.phoneLink}
                       className="text-lg font-montserrat font-semibold text-medical-blue hover:text-medical-blue-dark transition-colors"
                     >
-                      (555) 123-4567
+                      {contactInfo.phone}
                     </a>
                   </div>
                 </div>
@@ -269,10 +196,10 @@ export default function Home() {
             subtitle="We offer a comprehensive range of pharmacy services to meet all your healthcare needs."
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
+            {homepage.services.map((service, index) => (
               <ServiceCard
                 key={service.title}
-                icon={service.icon}
+                icon={serviceIcons[service.title] || <Pill className="w-7 h-7" />}
                 title={service.title}
                 description={service.description}
                 href={service.href}
@@ -293,18 +220,18 @@ export default function Home() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <SectionHeading
-            title="Why Choose River Park Pharmacy"
+            title={`Why Choose ${company.name}`}
             subtitle="We're more than just a pharmacy — we're your trusted healthcare partner in the community."
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyChooseUs.map((item, index) => (
+            {homepage.whyChooseUs.map((item, index) => (
               <AnimatedSection
                 key={item.title}
                 delay={index * 0.1}
                 className="text-center"
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-pharmacy-red to-pharmacy-red-dark rounded-2xl flex items-center justify-center text-white mx-auto mb-4">
-                  {item.icon}
+                  {whyChooseUsIcons[item.title] || <Heart className="w-6 h-6" />}
                 </div>
                 <h3 className="font-montserrat font-semibold text-lg text-gray-900 mb-2">
                   {item.title}
@@ -328,28 +255,31 @@ export default function Home() {
 
           {/* Slider Container */}
           <div
-            className="relative"
+            className="relative touch-pan-y"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
             {/* Navigation Buttons */}
             <button
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-pharmacy-red hover:shadow-xl transition-all hidden md:flex"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 sm:-translate-x-2 md:-translate-x-4 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-pharmacy-red hover:shadow-xl transition-all active:scale-95"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-pharmacy-red hover:shadow-xl transition-all hidden md:flex"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 sm:translate-x-2 md:translate-x-4 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-pharmacy-red hover:shadow-xl transition-all active:scale-95"
               aria-label="Next testimonial"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
             </button>
 
             {/* Slides Track */}
-            <div className="overflow-hidden mx-0 md:mx-8">
+            <div className="overflow-hidden mx-10 sm:mx-12 md:mx-16">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
@@ -403,7 +333,7 @@ export default function Home() {
                             <p className="font-montserrat font-semibold text-gray-900">
                               {testimonial.name}
                             </p>
-                            <p className="text-sm text-gray-500">Verified Customer</p>
+                            <p className="text-sm text-gray-500">{testimonial.location}</p>
                           </div>
                         </div>
                       </div>
@@ -428,7 +358,7 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Mobile Swipe Hint */}
+            {/* Mobile Navigation Hint */}
             <p className="text-center text-gray-400 text-sm mt-4 md:hidden">
               Swipe or tap arrows to see more
             </p>
@@ -441,7 +371,7 @@ export default function Home() {
         <div className="container-custom">
           <AnimatedSection direction="fade">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-              {trustSignals.map((signal, index) => (
+              {homepage.trustSignals.map((signal, index) => (
                 <div
                   key={index}
                   className="flex items-center justify-center text-center"
@@ -480,9 +410,9 @@ export default function Home() {
                           Our Location
                         </p>
                         <p className="text-gray-600">
-                          123 River Park Drive, Suite 100
+                          {contactInfo.address.street}, {contactInfo.address.suite}
                           <br />
-                          Your City, ST 12345
+                          {contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zip}
                         </p>
                       </div>
                     </div>
@@ -493,10 +423,10 @@ export default function Home() {
                           Phone Number
                         </p>
                         <a
-                          href="tel:+15551234567"
+                          href={contactInfo.phoneLink}
                           className="text-medical-blue hover:text-medical-blue-dark transition-colors"
                         >
-                          (555) 123-4567
+                          {contactInfo.phone}
                         </a>
                       </div>
                     </div>
@@ -507,9 +437,9 @@ export default function Home() {
                           Business Hours
                         </p>
                         <p className="text-gray-600">
-                          Mon - Fri: 9:00 AM - 7:00 PM
+                          {hours.weekday.days}: {hours.weekday.open} - {hours.weekday.close}
                           <br />
-                          Sat: 9:00 AM - 5:00 PM | Sun: Closed
+                          {hours.saturday.days}: {hours.saturday.open} - {hours.saturday.close} | {hours.sunday.days}: {hours.sunday.status}
                         </p>
                       </div>
                     </div>
@@ -520,20 +450,18 @@ export default function Home() {
                   </Button>
                 </AnimatedSection>
               </div>
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-8 md:p-12 flex items-center justify-center min-h-[300px] lg:min-h-0">
-                <AnimatedSection delay={0.2} direction="fade">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
-                      <MapPin className="w-10 h-10 text-pharmacy-red" />
-                    </div>
-                    <p className="text-gray-600 font-montserrat">
-                      Map placeholder
-                    </p>
-                    <p className="text-sm text-gray-500 mt-2">
-                      Interactive map coming soon
-                    </p>
-                  </div>
-                </AnimatedSection>
+              <div className="min-h-[300px] lg:min-h-0">
+                <iframe
+                  src={contactInfo.address.mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '350px' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="River Park Pharmacy Location"
+                  className="w-full h-full"
+                />
               </div>
             </div>
           </div>
@@ -545,22 +473,21 @@ export default function Home() {
         <div className="container-custom text-center">
           <AnimatedSection>
             <h2 className="heading-2 text-white mb-4">
-              Ready to Experience Better Pharmacy Care?
+              {homepage.ctaSection.title}
             </h2>
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-              Join the River Park Pharmacy family today. Transfer your
-              prescriptions and discover the difference personalized care makes.
+              {homepage.ctaSection.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/prescriptions"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-pharmacy-red font-montserrat font-semibold rounded-lg hover:bg-gray-100 transition-colors"
               >
-                Transfer Prescription
+                {homepage.ctaSection.primaryCta}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <a
-                href="tel:+15551234567"
+                href={contactInfo.phoneLink}
                 className="inline-flex items-center justify-center px-8 py-4 bg-transparent text-white border-2 border-white font-montserrat font-semibold rounded-lg hover:bg-white/10 transition-colors"
               >
                 <Phone className="w-5 h-5 mr-2" />

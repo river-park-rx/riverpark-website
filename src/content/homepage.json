@@ -1,0 +1,119 @@
+{
+  "hero": {
+    "title": "Your Health, Our Priority",
+    "titleHighlight": "Our Priority",
+    "subtitle": "Experience personalized pharmacy care with our team of dedicated pharmacists. We're here to help you live healthier.",
+    "primaryCta": "Refill Prescription",
+    "secondaryCta": "Our Services"
+  },
+  "services": [
+    {
+      "title": "Prescription Refills",
+      "description": "Quick and easy prescription refills. Submit online, call us, or use our mobile-friendly system — your medication will be ready when you arrive.",
+      "href": "/prescriptions"
+    },
+    {
+      "title": "Transfer Prescriptions",
+      "description": "Switching pharmacies? We handle everything — just give us your information and we'll take care of the rest.",
+      "href": "/prescriptions#transfer"
+    },
+    {
+      "title": "Immunizations & Vaccines",
+      "description": "Stay protected with our comprehensive vaccination services. Walk-ins welcome for flu shots, COVID-19, shingles, and more.",
+      "href": "/services#immunizations"
+    },
+    {
+      "title": "Free Delivery",
+      "description": "Can't make it to the pharmacy? We offer free prescription delivery to your home or office within our service area.",
+      "href": "/services#delivery"
+    }
+  ],
+  "whyChooseUs": [
+    {
+      "title": "Personalized Care",
+      "description": "We take the time to understand your unique health needs and provide tailored solutions that work for you."
+    },
+    {
+      "title": "Medication Savings",
+      "description": "Our pharmacists help you find the best prices and coordinate your benefits to maximize savings."
+    },
+    {
+      "title": "Fast & Convenient",
+      "description": "Multiple ways to refill — online, by phone, or in person. Plus free delivery right to your door."
+    },
+    {
+      "title": "Expert Guidance",
+      "description": "Our knowledgeable pharmacists are always available to answer questions and provide medication counseling."
+    }
+  ],
+  "trustSignals": [
+    "Licensed & Certified Pharmacists",
+    "Most Insurance Plans Accepted",
+    "Free Delivery",
+    "Medication Savings Programs"
+  ],
+  "testimonials": [
+    {
+      "name": "Maria S.",
+      "rating": 5,
+      "text": "The pharmacists here truly care about their customers. They took the time to explain my medications and even helped me find a more affordable option. Best pharmacy experience I've ever had!",
+      "location": "Local Resident",
+      "image": "/images/testimonials/t1.png"
+    },
+    {
+      "name": "James T.",
+      "rating": 5,
+      "text": "I switched from a big chain pharmacy and the difference is night and day. Free delivery, no long waits, and they actually know my name. Highly recommend River Park Pharmacy!",
+      "location": "Patient since 2019",
+      "image": "/images/testimonials/t1.png"
+    },
+    {
+      "name": "Linda M.",
+      "rating": 5,
+      "text": "The pill packaging service has been a lifesaver for my elderly mother. Everything is organized by day and time — no more confusion about which medications to take. Thank you!",
+      "location": "Family Caregiver",
+      "image": "/images/testimonials/t1.png"
+    },
+    {
+      "name": "Robert K.",
+      "rating": 5,
+      "text": "After my surgery, the team helped coordinate all my new medications and even called to check on me. You don't get that kind of service from the big chains. Forever grateful!",
+      "location": "New Patient",
+      "image": "/images/testimonials/t1.png"
+    },
+    {
+      "name": "Susan W.",
+      "rating": 5,
+      "text": "They saved me over $200 a month by finding generic alternatives and manufacturer coupons. The pharmacist took the time to review all my medications — amazing service!",
+      "location": "Long-term Patient",
+      "image": "/images/testimonials/t1.png"
+    },
+    {
+      "name": "David L.",
+      "rating": 5,
+      "text": "My dog needed compounded medication that other pharmacies couldn't provide. River Park made it happen within 24 hours. They truly go above and beyond!",
+      "location": "Pet Owner",
+      "image": "/images/testimonials/t1.png"
+    },
+    {
+      "name": "Patricia H.",
+      "rating": 5,
+      "text": "The immunization process was quick and painless. No appointment needed, and the pharmacist was so friendly and professional. Got my flu shot in under 10 minutes!",
+      "location": "Healthcare Worker",
+      "image": "/images/testimonials/t1.png"
+    },
+    {
+      "name": "Michael R.",
+      "rating": 5,
+      "text": "As someone with multiple chronic conditions, having a pharmacy that knows my history is invaluable. They catch potential drug interactions and always have my medications ready on time.",
+      "location": "Monthly Customer",
+      "image": "/images/testimonials/t1.png"
+    }
+  ],
+  "ctaSection": {
+    "title": "Ready to Experience Better Pharmacy Care?",
+    "description": "Join the River Park Pharmacy family today. Transfer your prescriptions and discover the difference personalized care makes.",
+    "primaryCta": "Transfer Prescription",
+    "secondaryCta": "Contact Us"
+  }
+}

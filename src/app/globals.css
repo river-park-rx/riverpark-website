@@ -13,18 +13,63 @@
 }
 
 @layer base {
+  /* Smooth scrolling for all devices including iOS Safari */
   html {
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Ensure smooth scroll works on all scrollable elements */
+  html,
+  body,
+  * {
+    scroll-behavior: smooth;
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html,
+    body,
+    * {
+      scroll-behavior: auto;
+    }
   }
 
   body {
     font-family: var(--font-family-open-sans);
     @apply text-gray-800 antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-family-montserrat);
     @apply font-bold;
+  }
+
+  /* Improve touch targets on mobile */
+  a, button {
+    @apply touch-manipulation;
+  }
+
+  /* Scroll margin for fixed header offset */
+  [id] {
+    scroll-margin-top: 80px;
+  }
+
+  @media (min-width: 768px) {
+    [id] {
+      scroll-margin-top: 96px;
+    }
+  }
+
+  /* Prevent text size adjustment on orientation change */
+  @media screen and (max-width: 767px) {
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
   }
 }
 
@@ -38,18 +83,21 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-pharmacy-red text-white font-semibold rounded-lg transition-all duration-200 ease-in-out hover:bg-pharmacy-red-dark hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-pharmacy-red focus:ring-offset-2;
+    @apply inline-flex items-center justify-center px-5 py-3 sm:px-6 bg-pharmacy-red text-white font-semibold rounded-lg transition-all duration-200 ease-in-out hover:bg-pharmacy-red-dark active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-pharmacy-red focus:ring-offset-2;
     font-family: var(--font-family-montserrat);
+    min-height: 44px; /* Minimum touch target size */
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-white text-medical-blue border-2 border-medical-blue font-semibold rounded-lg transition-all duration-200 ease-in-out hover:bg-medical-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-medical-blue focus:ring-offset-2;
+    @apply inline-flex items-center justify-center px-5 py-3 sm:px-6 bg-white text-medical-blue border-2 border-medical-blue font-semibold rounded-lg transition-all duration-200 ease-in-out hover:bg-medical-blue hover:text-white active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-medical-blue focus:ring-offset-2;
     font-family: var(--font-family-montserrat);
+    min-height: 44px;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-transparent text-pharmacy-red border-2 border-pharmacy-red font-semibold rounded-lg transition-all duration-200 ease-in-out hover:bg-pharmacy-red hover:text-white focus:outline-none focus:ring-2 focus:ring-pharmacy-red focus:ring-offset-2;
+    @apply inline-flex items-center justify-center px-5 py-3 sm:px-6 bg-transparent text-pharmacy-red border-2 border-pharmacy-red font-semibold rounded-lg transition-all duration-200 ease-in-out hover:bg-pharmacy-red hover:text-white active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-pharmacy-red focus:ring-offset-2;
     font-family: var(--font-family-montserrat);
+    min-height: 44px;
   }
 
   .section-padding {

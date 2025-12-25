@@ -1,0 +1,79 @@
+{
+  "hero": {
+    "title": "Prescriptions",
+    "titleHighlight": "Prescriptions",
+    "subtitle": "Managing your medications has never been easier. Refill online, transfer from another pharmacy, or sync all your prescriptions for convenient pickup."
+  },
+  "refillSteps": [
+    {
+      "step": 1,
+      "title": "Submit Your Refill",
+      "description": "Call us, use our online form, or stop by in person with your prescription number."
+    },
+    {
+      "step": 2,
+      "title": "We Process It",
+      "description": "Our pharmacists verify your prescription, check for interactions, and prepare your medication."
+    },
+    {
+      "step": 3,
+      "title": "Get Notified",
+      "description": "Receive a text or call when your prescription is ready for pickup or delivery."
+    },
+    {
+      "step": 4,
+      "title": "Pick Up or Deliver",
+      "description": "Grab your medications at your convenience, or let us deliver them free to your door."
+    }
+  ],
+  "transferBenefits": [
+    "We handle all the paperwork",
+    "Same-day transfers available",
+    "All medications transferred at once",
+    "Insurance billing handled automatically",
+    "Free medication review with transfer",
+    "No interruption in your medications"
+  ],
+  "faq": [
+    {
+      "question": "How long does a refill take?",
+      "answer": "Most refills are ready within 15-30 minutes. For new prescriptions or controlled substances, please allow up to 2 hours."
+    },
+    {
+      "question": "Can I refill my prescription early?",
+      "answer": "This depends on your insurance and the type of medication. Generally, you can refill 7 days before running out. Controlled substances may have stricter requirements."
+    },
+    {
+      "question": "How do I transfer my prescriptions?",
+      "answer": "Simply bring your current prescription bottles or provide your previous pharmacy's information. We'll contact them directly and handle the entire transfer process."
+    },
+    {
+      "question": "Do you accept my insurance?",
+      "answer": "We accept most major insurance plans, Medicare Part D, and Medicaid. Contact us with your insurance information, and we'll verify your coverage."
+    },
+    {
+      "question": "What if I don't have insurance?",
+      "answer": "We offer competitive cash prices and can help you find manufacturer coupons and patient assistance programs to reduce your costs."
+    }
+  ],
+  "insuranceInfo": {
+    "title": "Insurance & Pricing",
+    "description": "We accept most major insurance plans and work hard to ensure you get the best price for your medications.",
+    "accepted": [
+      "Medicare Part D",
+      "Medicaid",
+      "Blue Cross Blue Shield",
+      "Aetna",
+      "Cigna",
+      "United Healthcare",
+      "Humana",
+      "Most other major plans"
+    ]
+  },
+  "ctaSection": {
+    "title": "Ready to Get Started?",
+    "description": "Transfer your prescriptions today and experience the River Park Pharmacy difference.",
+    "primaryCta": "Transfer Now",
+    "secondaryCta": "Call Us"
+  }
+}

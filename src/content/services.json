@@ -1,0 +1,159 @@
+{
+  "hero": {
+    "title": "Our Services",
+    "titleHighlight": "Services",
+    "subtitle": "Comprehensive pharmacy services designed around your health needs. From prescription management to specialized care, we're here for you."
+  },
+  "list": [
+    {
+      "id": "prescription-refills",
+      "title": "Prescription Refills",
+      "shortDescription": "Quick and easy refills online, by phone, or in person.",
+      "description": "Managing your medications has never been easier. Request refills online, by phone, or through our mobile app. We'll notify you when your prescription is ready for pickup or delivery.",
+      "features": [
+        "Online refill requests 24/7",
+        "Automatic refill reminders",
+        "Same-day filling for most prescriptions",
+        "Text and email notifications"
+      ]
+    },
+    {
+      "id": "transfer-prescriptions",
+      "title": "Transfer Prescriptions",
+      "shortDescription": "Easy prescription transfers from any pharmacy.",
+      "description": "Switching to River Park Pharmacy is simple. Just provide us with your current pharmacy information, and we'll handle the rest. No hassle, no paperwork for you.",
+      "features": [
+        "We contact your previous pharmacy",
+        "All medications transferred at once",
+        "Insurance billing handled automatically",
+        "Usually ready within 24 hours"
+      ]
+    },
+    {
+      "id": "immunizations",
+      "title": "Immunizations & Vaccines",
+      "shortDescription": "Flu shots, COVID-19 vaccines, and more. Walk-ins welcome.",
+      "description": "Protect yourself and your loved ones with our comprehensive immunization services. Our certified pharmacists can administer a wide range of vaccines quickly and safely.",
+      "features": [
+        "Flu shots (seasonal)",
+        "COVID-19 vaccines & boosters",
+        "Shingles (Shingrix)",
+        "Pneumonia vaccines",
+        "Tetanus, Tdap",
+        "Hepatitis A & B",
+        "Most insurance accepted"
+      ]
+    },
+    {
+      "id": "medication-counseling",
+      "title": "Medication Counseling",
+      "shortDescription": "One-on-one consultations with our expert pharmacists.",
+      "description": "Have questions about your medications? Our pharmacists are always available for private consultations to discuss your prescriptions, potential interactions, and how to take your medications effectively.",
+      "features": [
+        "Private consultation area",
+        "Drug interaction reviews",
+        "Side effect management",
+        "Medication optimization",
+        "No appointment necessary"
+      ]
+    },
+    {
+      "id": "mtm",
+      "title": "Medication Therapy Management",
+      "shortDescription": "Comprehensive medication reviews and optimization.",
+      "description": "Our MTM program helps patients with multiple medications get the most benefit from their treatment. We review all your medications, identify potential issues, and work with your healthcare team to optimize your therapy.",
+      "features": [
+        "Comprehensive medication review",
+        "Drug interaction screening",
+        "Cost-saving alternatives",
+        "Adherence support",
+        "Coordination with your doctors"
+      ]
+    },
+    {
+      "id": "health-consultations",
+      "title": "Health Consultations",
+      "shortDescription": "Blood pressure checks, diabetes monitoring, and wellness advice.",
+      "description": "Beyond filling prescriptions, we're your partners in health. Stop by for free blood pressure checks, blood glucose monitoring, and general wellness advice from our knowledgeable staff.",
+      "features": [
+        "Blood pressure monitoring",
+        "Blood glucose testing",
+        "Medication adherence support",
+        "Wellness recommendations",
+        "Health screenings"
+      ]
+    },
+    {
+      "id": "senior-care",
+      "title": "Senior Care Services",
+      "shortDescription": "Specialized services for our elderly patients.",
+      "description": "We understand the unique healthcare needs of seniors. Our specialized services help elderly patients manage multiple medications, coordinate care, and maintain independence.",
+      "features": [
+        "Medication synchronization",
+        "Easy-open packaging",
+        "Large print labels",
+        "Home delivery",
+        "Caregiver coordination"
+      ]
+    },
+    {
+      "id": "free-delivery",
+      "title": "Free Delivery",
+      "shortDescription": "Convenient delivery right to your door.",
+      "description": "Can't make it to the pharmacy? No problem. We offer free delivery service to homes and businesses throughout our service area. Your medications arrive safely and on time.",
+      "features": [
+        "Free local delivery",
+        "Same-day delivery available",
+        "Temperature-controlled transport",
+        "Contactless delivery option",
+        "Delivery tracking"
+      ]
+    },
+    {
+      "id": "pill-packaging",
+      "title": "Multi-Dose Pill Packaging",
+      "shortDescription": "Pre-sorted medications for easy daily management.",
+      "description": "Never miss a dose again. Our multi-dose packaging organizes your medications by date and time, making it simple to take the right pills at the right time.",
+      "features": [
+        "Clearly labeled packets",
+        "Organized by time of day",
+        "Easy tear-open pouches",
+        "Reduces medication errors",
+        "Great for caregivers"
+      ]
+    },
+    {
+      "id": "pet-medications",
+      "title": "Pet Medications",
+      "shortDescription": "Prescription medications for your furry family members.",
+      "description": "Your pets deserve great pharmacy care too. We fill veterinary prescriptions and can compound pet medications in flavors and forms that make giving medicine easier.",
+      "features": [
+        "Veterinary prescriptions filled",
+        "Pet-friendly flavoring",
+        "Custom compounded medications",
+        "Flea and tick preventatives",
+        "Heartworm medications"
+      ]
+    },
+    {
+      "id": "otc-wellness",
+      "title": "Over-the-Counter & Wellness",
+      "shortDescription": "Quality health products and expert recommendations.",
+      "description": "Beyond prescriptions, we stock a carefully curated selection of over-the-counter medications, vitamins, supplements, and wellness products. Our pharmacists can help you choose the right products for your needs.",
+      "features": [
+        "Vitamins & supplements",
+        "First aid supplies",
+        "Pain relief products",
+        "Cold & flu remedies",
+        "Diabetic supplies",
+        "Personal care items"
+      ]
+    }
+  ],
+  "ctaSection": {
+    "title": "Questions About Our Services?",
+    "description": "Our friendly team is here to help. Contact us to learn more about any of our services or to discuss your specific healthcare needs.",
+    "primaryCta": "Contact Us",
+    "secondaryCta": "Call Now"
+  }
+}

@@ -10,46 +10,47 @@ import {
   Send,
   ArrowRight,
   MessageSquare,
+  Loader2,
+  CheckCircle,
+  AlertCircle,
 } from 'lucide-react'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import Button from '@/components/ui/Button'
+import { contactInfo, hours, contactPage } from '@/content'
 
-const contactInfo = [
+// Build contact info cards from content
+const contactInfoCards = [
   {
     icon: <MapPin className="w-6 h-6" />,
     title: 'Visit Us',
-    details: ['123 River Park Drive', 'Suite 100', 'Your City, ST 12345'],
+    details: [contactInfo.address.street, contactInfo.address.suite, `${contactInfo.address.city}, ${contactInfo.address.state} ${contactInfo.address.zip}`],
     action: {
       label: 'Get Directions',
-      href: 'https://maps.google.com',
+      href: contactInfo.address.mapUrl,
     },
   },
   {
     icon: <Phone className="w-6 h-6" />,
     title: 'Call Us',
-    details: ['(555) 123-4567', 'Fax: (555) 123-4568'],
+    details: [contactInfo.phone, `Fax: ${contactInfo.fax}`],
     action: {
       label: 'Call Now',
-      href: 'tel:+15551234567',
+      href: contactInfo.phoneLink,
     },
   },
   {
     icon: <Mail className="w-6 h-6" />,
     title: 'Email Us',
-    details: ['info@riverparkpharmacy.com', 'refills@riverparkpharmacy.com'],
+    details: [contactInfo.email, contactInfo.refillEmail],
     action: {
       label: 'Send Email',
-      href: 'mailto:info@riverparkpharmacy.com',
+      href: `mailto:${contactInfo.email}`,
     },
   },
   {
     icon: <Clock className="w-6 h-6" />,
     title: 'Business Hours',
-    details: [
-      'Monday - Friday: 9:00 AM - 7:00 PM',
-      'Saturday: 9:00 AM - 5:00 PM',
-      'Sunday: Closed',
-    ],
+    details: hours.formatted,
   },
 ]
 
@@ -61,6 +62,11 @@ export default function ContactPage() {
     subject: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null
+    message: string
+  }>({ type: null, message: '' })
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -71,12 +77,39 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic would go here
-    alert(
-      'Thank you for your message! We will get back to you as soon as possible.'
-    )
+    setIsSubmitting(true)
+    setSubmitStatus({ type: null, message: '' })
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setSubmitStatus({
+        type: 'success',
+        message: 'Thank you for your message! We will get back to you as soon as possible.',
+      })
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Something went wrong. Please try again.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -91,17 +124,15 @@ export default function ContactPage() {
             className="max-w-3xl mx-auto text-center"
           >
             <h1 className="heading-1 text-gray-900 mb-6">
-              Get in <span className="text-pharmacy-red">Touch</span>
+              {contactPage.hero.title.replace(contactPage.hero.titleHighlight, '')}<span className="text-pharmacy-red">{contactPage.hero.titleHighlight}</span>
             </h1>
             <p className="body-text mb-8">
-              Have questions about your prescriptions or our services? We'd love
-              to hear from you. Reach out by phone, email, or visit us in
-              person.
+              {contactPage.hero.subtitle}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <a href="tel:+15551234567" className="btn-primary">
+              <a href={contactInfo.phoneLink} className="btn-primary">
                 <Phone className="w-5 h-5 mr-2" />
-                (555) 123-4567
+                {contactInfo.phone}
               </a>
               <a href="#contact-form" className="btn-secondary">
                 <MessageSquare className="w-5 h-5 mr-2" />
@@ -116,7 +147,7 @@ export default function ContactPage() {
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {contactInfo.map((info, index) => (
+            {contactInfoCards.map((info, index) => (
               <AnimatedSection key={info.title} delay={index * 0.1}>
                 <div className="bg-white rounded-xl p-6 h-full shadow-md hover:shadow-lg transition-all duration-300">
                   <div className="w-14 h-14 bg-pharmacy-red/10 rounded-xl flex items-center justify-center text-pharmacy-red mb-4">
@@ -165,6 +196,23 @@ export default function ContactPage() {
                   </p>
                 </div>
 
+                {submitStatus.type && (
+                  <div
+                    className={`flex items-center gap-3 p-4 rounded-lg ${
+                      submitStatus.type === 'success'
+                        ? 'bg-green-50 text-green-800 border border-green-200'
+                        : 'bg-red-50 text-red-800 border border-red-200'
+                    }`}
+                  >
+                    {submitStatus.type === 'success' ? (
+                      <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                    ) : (
+                      <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                    )}
+                    <p>{submitStatus.message}</p>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
@@ -181,7 +229,8 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                         placeholder="John Doe"
                       />
                     </div>
@@ -199,7 +248,8 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -219,8 +269,9 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors"
-                        placeholder="(555) 123-4567"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                        placeholder={contactInfo.phone}
                       />
                     </div>
                     <div>
@@ -236,14 +287,15 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors bg-white"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                       >
                         <option value="">Select a subject</option>
-                        <option value="prescription">Prescription Inquiry</option>
-                        <option value="refill">Refill Request</option>
-                        <option value="transfer">Transfer Prescription</option>
-                        <option value="services">Services Question</option>
-                        <option value="other">Other</option>
+                        {contactPage.formSubjects.map((subject) => (
+                          <option key={subject.value} value={subject.value}>
+                            {subject.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -261,47 +313,61 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      disabled={isSubmitting}
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                       placeholder="How can we help you?"
                     />
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 items-center justify-between pt-2">
                     <p className="text-sm text-gray-500">* Required fields</p>
-                    <Button type="submit" size="lg">
-                      Send Message
-                      <Send className="w-5 h-5 ml-2" />
+                    <Button type="submit" size="lg" disabled={isSubmitting}>
+                      {isSubmitting ? (
+                        <>
+                          Sending...
+                          <Loader2 className="w-5 h-5 ml-2 animate-spin" />
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="w-5 h-5 ml-2" />
+                        </>
+                      )}
                     </Button>
                   </div>
                 </form>
               </div>
             </AnimatedSection>
 
-            {/* Map Placeholder */}
+            {/* Embedded Map */}
             <AnimatedSection delay={0.2}>
-              <div className="h-full min-h-[400px] lg:min-h-0">
-                <div className="bg-gray-100 rounded-2xl h-full flex items-center justify-center p-8">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
-                      <MapPin className="w-10 h-10 text-pharmacy-red" />
-                    </div>
-                    <h3 className="font-montserrat font-semibold text-gray-900 mb-2">
-                      Find Us on the Map
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-4">
-                      123 River Park Drive, Suite 100
-                      <br />
-                      Your City, ST 12345
+              <div className="h-full min-h-[400px] lg:min-h-0 flex flex-col">
+                <div className="bg-gray-100 rounded-2xl overflow-hidden flex-grow flex flex-col">
+                  <iframe
+                    src={contactInfo.address.mapEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, minHeight: '350px' }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="River Park Pharmacy Location"
+                    className="flex-grow"
+                  />
+                  <div className="p-4 bg-white border-t border-gray-200">
+                    <p className="text-gray-600 text-sm mb-3">
+                      {contactInfo.address.street}, {contactInfo.address.suite}<br />
+                      {contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zip}
                     </p>
                     <a
-                      href="https://maps.google.com"
+                      href={contactInfo.address.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-secondary text-sm"
+                      className="inline-flex items-center text-medical-blue hover:text-medical-blue-dark font-medium text-sm transition-colors"
                     >
-                      Open in Google Maps
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      Get Directions
+                      <ArrowRight className="w-4 h-4 ml-1" />
                     </a>
                   </div>
                 </div>
@@ -328,14 +394,14 @@ export default function ContactPage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4 md:justify-end">
                 <a
-                  href="tel:+15551234567"
+                  href={contactInfo.phoneLink}
                   className="btn-primary flex items-center justify-center"
                 >
                   <Phone className="w-5 h-5 mr-2" />
-                  Call (555) 123-4567
+                  Call {contactInfo.phone}
                 </a>
                 <a
-                  href="mailto:info@riverparkpharmacy.com"
+                  href={`mailto:${contactInfo.email}`}
                   className="btn-secondary flex items-center justify-center"
                 >
                   <Mail className="w-5 h-5 mr-2" />
@@ -359,14 +425,7 @@ export default function ContactPage() {
               patients ask.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto text-left">
-              {[
-                'How do I transfer my prescriptions?',
-                'What insurance plans do you accept?',
-                'Do you offer delivery services?',
-                'How long does a refill take?',
-                'Do you compound medications?',
-                'What vaccines do you provide?',
-              ].map((question, index) => (
+              {contactPage.faq.map((question, index) => (
                 <div
                   key={index}
                   className="bg-white/10 rounded-lg p-4 text-white text-sm"
@@ -377,8 +436,8 @@ export default function ContactPage() {
             </div>
             <p className="text-white/80 text-sm mt-8">
               Call us at{' '}
-              <a href="tel:+15551234567" className="underline hover:text-white">
-                (555) 123-4567
+              <a href={contactInfo.phoneLink} className="underline hover:text-white">
+                {contactInfo.phone}
               </a>{' '}
               for answers to these and any other questions.
             </p>
