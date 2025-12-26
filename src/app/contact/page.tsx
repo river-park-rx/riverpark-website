@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   Phone,
   Mail,
@@ -59,14 +59,31 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
+    dateOfBirth: '',
     subject: '',
     message: '',
   })
+  const [emailError, setEmailError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null
     message: string
   }>({ type: null, message: '' })
+
+  // Auto-dismiss status message after 10 seconds
+  useEffect(() => {
+    if (submitStatus.type) {
+      const timer = setTimeout(() => {
+        setSubmitStatus({ type: null, message: '' })
+      }, 10000)
+      return () => clearTimeout(timer)
+    }
+  }, [submitStatus.type])
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    return emailRegex.test(email)
+  }
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -75,10 +92,26 @@ export default function ContactPage() {
   ) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+
+    // Clear email error when user types
+    if (name === 'email') {
+      if (value && !validateEmail(value)) {
+        setEmailError('Please enter a valid email address')
+      } else {
+        setEmailError('')
+      }
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Validate email before submission
+    if (!validateEmail(formData.email)) {
+      setEmailError('Please enter a valid email address')
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus({ type: null, message: '' })
 
@@ -94,14 +127,15 @@ export default function ContactPage() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message')
+        throw new Error(data.error || 'Failed to submit form')
       }
 
       setSubmitStatus({
         type: 'success',
-        message: 'Thank you for your message! We will get back to you as soon as possible.',
+        message: 'Your message has been submitted successfully! We will get back to you as soon as possible.',
       })
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+      setFormData({ name: '', email: '', phone: '', dateOfBirth: '', subject: '', message: '' })
+      setEmailError('')
     } catch (error) {
       setSubmitStatus({
         type: 'error',
@@ -196,22 +230,33 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                {submitStatus.type && (
-                  <div
-                    className={`flex items-center gap-3 p-4 rounded-lg ${
-                      submitStatus.type === 'success'
-                        ? 'bg-green-50 text-green-800 border border-green-200'
-                        : 'bg-red-50 text-red-800 border border-red-200'
-                    }`}
-                  >
-                    {submitStatus.type === 'success' ? (
-                      <CheckCircle className="w-5 h-5 flex-shrink-0" />
-                    ) : (
-                      <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                    )}
-                    <p>{submitStatus.message}</p>
-                  </div>
-                )}
+                <AnimatePresence>
+                  {submitStatus.type && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className={`flex items-start gap-3 p-5 rounded-xl mb-6 ${
+                        submitStatus.type === 'success'
+                          ? 'bg-green-50 text-green-800 border-2 border-green-300'
+                          : 'bg-red-50 text-red-800 border-2 border-red-300'
+                      }`}
+                    >
+                      {submitStatus.type === 'success' ? (
+                        <CheckCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                      ) : (
+                        <AlertCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                      )}
+                      <div>
+                        <p className="font-semibold text-lg">
+                          {submitStatus.type === 'success' ? 'Success!' : 'Error'}
+                        </p>
+                        <p className="mt-1">{submitStatus.message}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
@@ -249,9 +294,14 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         disabled={isSubmitting}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed ${
+                          emailError ? 'border-red-500' : 'border-gray-300'
+                        }`}
                         placeholder="john@example.com"
                       />
+                      {emailError && (
+                        <p className="mt-1 text-sm text-red-600">{emailError}</p>
+                      )}
                     </div>
                   </div>
 
@@ -276,28 +326,46 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <label
-                        htmlFor="subject"
+                        htmlFor="dateOfBirth"
                         className="block text-sm font-montserrat font-medium text-gray-700 mb-2"
                       >
-                        Subject *
+                        Date of Birth
                       </label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
+                      <input
+                        type="date"
+                        id="dateOfBirth"
+                        name="dateOfBirth"
+                        value={formData.dateOfBirth}
                         onChange={handleChange}
-                        required
                         disabled={isSubmitting}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
-                      >
-                        <option value="">Select a subject</option>
-                        {contactPage.formSubjects.map((subject) => (
-                          <option key={subject.value} value={subject.value}>
-                            {subject.label}
-                          </option>
-                        ))}
-                      </select>
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                      />
                     </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="subject"
+                      className="block text-sm font-montserrat font-medium text-gray-700 mb-2"
+                    >
+                      Subject *
+                    </label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pharmacy-red focus:border-pharmacy-red transition-colors bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    >
+                      <option value="">Select a subject</option>
+                      {contactPage.formSubjects.map((subject) => (
+                        <option key={subject.value} value={subject.value}>
+                          {subject.label}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
                   <div>
@@ -322,15 +390,15 @@ export default function ContactPage() {
 
                   <div className="flex flex-col sm:flex-row gap-4 items-center justify-between pt-2">
                     <p className="text-sm text-gray-500">* Required fields</p>
-                    <Button type="submit" size="lg" disabled={isSubmitting}>
+                    <Button type="submit" size="lg" disabled={isSubmitting || !!emailError}>
                       {isSubmitting ? (
                         <>
-                          Sending...
+                          Submitting...
                           <Loader2 className="w-5 h-5 ml-2 animate-spin" />
                         </>
                       ) : (
                         <>
-                          Send Message
+                          Submit
                           <Send className="w-5 h-5 ml-2" />
                         </>
                       )}

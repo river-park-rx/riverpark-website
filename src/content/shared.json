@@ -6,11 +6,11 @@
     "founded": "2010"
   },
   "contact": {
-    "phone": "(555) 123-4567",
-    "phoneLink": "tel:+15551234567",
-    "fax": "(555) 123-4568",
+    "phone": "(347) 726-6969",
+    "phoneLink": "tel:+1 347-726-6560",
+    "fax": "(347)726-6540",
     "email": "info@riverparkpharmacy.com",
-    "refillEmail": "refills@riverparkpharmacy.com",
+    "refillEmail": "riverparkrx@gmail.com",
     "privacyEmail": "privacy@riverparkpharmacy.com",
     "address": {
       "street": "1818 Cedar Ave",
@@ -26,21 +26,21 @@
   "hours": {
     "weekday": {
       "days": "Monday - Friday",
-      "open": "9:00 AM",
-      "close": "7:00 PM"
+      "open": "10:00 AM",
+      "close": "6:00 PM"
     },
     "saturday": {
       "days": "Saturday",
-      "open": "9:00 AM",
-      "close": "5:00 PM"
+      "open": "10:00 AM",
+      "close": "4:00 PM"
     },
     "sunday": {
       "days": "Sunday",
       "status": "Closed"
     },
     "formatted": [
-      "Monday - Friday: 9:00 AM - 7:00 PM",
-      "Saturday: 9:00 AM - 5:00 PM",
+      "Monday - Friday: 10:00 AM - 6:00 PM",
+      "Saturday: 10:00 AM - 4:00 PM",
       "Sunday: Closed"
     ]
   },

@@ -6,6 +6,7 @@ interface ContactFormData {
   name: string
   email: string
   phone: string
+  dateOfBirth: string
   subject: string
   message: string
 }
@@ -13,7 +14,7 @@ interface ContactFormData {
 export async function POST(request: NextRequest) {
   try {
     const body: ContactFormData = await request.json()
-    const { name, email, phone, subject, message } = body
+    const { name, email, phone, dateOfBirth, subject, message } = body
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
@@ -24,7 +25,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     if (!emailRegex.test(email)) {
       return NextResponse.json(
         { error: 'Please provide a valid email address' },
@@ -59,7 +60,7 @@ export async function POST(request: NextRequest) {
 
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
             <tr>
-              <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 120px;">Name:</td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 140px;">Name:</td>
               <td style="padding: 10px; border-bottom: 1px solid #eee;">${name}</td>
             </tr>
             <tr>
@@ -71,6 +72,10 @@ export async function POST(request: NextRequest) {
             <tr>
               <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Phone:</td>
               <td style="padding: 10px; border-bottom: 1px solid #eee;">${phone || 'Not provided'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Date of Birth:</td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee;">${dateOfBirth || 'Not provided'}</td>
             </tr>
             <tr>
               <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Subject:</td>
@@ -90,55 +95,20 @@ export async function POST(request: NextRequest) {
       `,
     }
 
-    // Confirmation email for the customer
-    const mailToCustomer = {
-      from: `"${company.name}" <${process.env.SMTP_FROM_EMAIL}>`,
-      to: email,
-      subject: `Thank you for contacting ${company.name}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #C41E3A;">Thank You for Contacting Us!</h2>
+    // Send email to pharmacy only
+    await transporter.sendMail(mailToPharmacy)
 
-          <p>Dear ${name},</p>
-
-          <p>Thank you for reaching out to ${company.name}. We have received your message and will get back to you as soon as possible.</p>
-
-          <div style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0;">
-            <h3 style="margin-top: 0; color: #333;">Your Message Details:</h3>
-            <p><strong>Subject:</strong> ${subjectLabel}</p>
-            <p><strong>Message:</strong></p>
-            <p style="white-space: pre-wrap;">${message}</p>
-          </div>
-
-          <p>If you need immediate assistance, please don't hesitate to call us at <strong>${contactInfo.phone}</strong>.</p>
-
-          <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-
-          <p style="color: #666; font-size: 14px;">
-            <strong>${company.name}</strong><br>
-            ${contactInfo.address.street}, ${contactInfo.address.suite}<br>
-            ${contactInfo.address.city}, ${contactInfo.address.state} ${contactInfo.address.zip}<br>
-            Phone: ${contactInfo.phone}<br>
-            Email: ${contactInfo.email}
-          </p>
-        </div>
-      `,
-    }
-
-    // Send both emails
-    await Promise.all([
-      transporter.sendMail(mailToPharmacy),
-      transporter.sendMail(mailToCustomer),
-    ])
+    console.log('Email successfully sent to:', process.env.CONTACT_EMAIL || contactInfo.email)
+    console.log('Form submission details:', { name, email, phone, dateOfBirth, subject: subjectLabel })
 
     return NextResponse.json(
-      { message: 'Email sent successfully' },
+      { message: 'Form submitted successfully' },
       { status: 200 }
     )
   } catch (error) {
     console.error('Error sending email:', error)
     return NextResponse.json(
-      { error: 'Failed to send email. Please try again later.' },
+      { error: 'Failed to submit form. Please try again later.' },
       { status: 500 }
     )
   }
