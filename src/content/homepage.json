@@ -55,58 +55,37 @@
   "testimonials": [
     {
       "name": "Maria S.",
-      "rating": 5,
-      "text": "The pharmacists here truly care about their customers. They took the time to explain my medications and even helped me find a more affordable option. Best pharmacy experience I've ever had!",
-      "location": "Local Resident",
+      "role": "Local Resident",
+      "rating": 3,
+      "text": "The pharmacists here truly care about their customers. They took the time to explain my medications and even helped me find a more affordable option.",
       "image": "/images/testimonials/t1.png"
     },
     {
       "name": "James T.",
+      "role": "Patient since 2019",
       "rating": 5,
-      "text": "I switched from a big chain pharmacy and the difference is night and day. Free delivery, no long waits, and they actually know my name. Highly recommend River Park Pharmacy!",
-      "location": "Patient since 2019",
+      "text": "I switched from a big chain pharmacy and the difference is night and day. Free delivery, no long waits, and they actually know my name.",
       "image": "/images/testimonials/t1.png"
     },
     {
       "name": "Linda M.",
-      "rating": 5,
-      "text": "The pill packaging service has been a lifesaver for my elderly mother. Everything is organized by day and time — no more confusion about which medications to take. Thank you!",
-      "location": "Family Caregiver",
+      "role": "Family Caregiver",
+      "rating": 4,
+      "text": "The pill packaging service has been a lifesaver for my elderly mother. Everything is organized by day and time — no more confusion.",
       "image": "/images/testimonials/t1.png"
     },
     {
       "name": "Robert K.",
-      "rating": 5,
-      "text": "After my surgery, the team helped coordinate all my new medications and even called to check on me. You don't get that kind of service from the big chains. Forever grateful!",
-      "location": "New Patient",
+      "role": "New Patient",
+      "rating": 2,
+      "text": "After my surgery, the team helped coordinate all my new medications and even called to check on me. You don't get that from big chains.",
       "image": "/images/testimonials/t1.png"
     },
     {
       "name": "Susan W.",
-      "rating": 5,
-      "text": "They saved me over $200 a month by finding generic alternatives and manufacturer coupons. The pharmacist took the time to review all my medications — amazing service!",
-      "location": "Long-term Patient",
-      "image": "/images/testimonials/t1.png"
-    },
-    {
-      "name": "David L.",
-      "rating": 5,
-      "text": "My dog needed compounded medication that other pharmacies couldn't provide. River Park made it happen within 24 hours. They truly go above and beyond!",
-      "location": "Pet Owner",
-      "image": "/images/testimonials/t1.png"
-    },
-    {
-      "name": "Patricia H.",
-      "rating": 5,
-      "text": "The immunization process was quick and painless. No appointment needed, and the pharmacist was so friendly and professional. Got my flu shot in under 10 minutes!",
-      "location": "Healthcare Worker",
-      "image": "/images/testimonials/t1.png"
-    },
-    {
-      "name": "Michael R.",
-      "rating": 5,
-      "text": "As someone with multiple chronic conditions, having a pharmacy that knows my history is invaluable. They catch potential drug interactions and always have my medications ready on time.",
-      "location": "Monthly Customer",
+      "role": "Long-term Patient",
+      "rating": 1,
+      "text": "They saved me over $200 a month by finding generic alternatives and manufacturer coupons. The pharmacist reviewed all my medications.",
       "image": "/images/testimonials/t1.png"
     }
   ],

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Pill,
@@ -17,14 +17,13 @@ import {
   ArrowRight,
   CheckCircle,
   DollarSign,
-  Star,
-  Quote,
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react'
 import ServiceCard from '@/components/ui/ServiceCard'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import SectionHeading from '@/components/ui/SectionHeading'
+import TestimonialCard from '@/components/ui/TestimonialCard'
 import Button from '@/components/ui/Button'
 import { company, contactInfo, hours, homepage } from '@/content'
 
@@ -44,63 +43,44 @@ const whyChooseUsIcons: Record<string, React.ReactNode> = {
   'Expert Guidance': <ShieldCheck className="w-6 h-6" />,
 }
 
-// Testimonials with initials for fallback display
-const testimonials = homepage.testimonials.map((t) => ({
-  ...t,
-  initials: t.name.split(' ').map(n => n[0]).join(''),
-}))
-
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [touchStart, setTouchStart] = useState<number | null>(null)
-  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const totalSlides = Math.ceil(homepage.testimonials.length / 3)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % testimonials.length)
-  }, [])
+    setCurrentSlide((prev) => (prev + 1) % totalSlides)
+  }, [totalSlides])
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }, [])
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-    setIsAutoPlaying(false)
-  }
-
-  // Touch handlers for swipe
-  const minSwipeDistance = 50
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientX)
-  }
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
-  }
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-    const distance = touchStart - touchEnd
-    const isLeftSwipe = distance > minSwipeDistance
-    const isRightSwipe = distance < -minSwipeDistance
-    if (isLeftSwipe) {
-      nextSlide()
-      setIsAutoPlaying(false)
-    } else if (isRightSwipe) {
-      prevSlide()
-      setIsAutoPlaying(false)
-    }
-  }
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides)
+  }, [totalSlides])
 
   // Auto-play functionality
   useEffect(() => {
-    if (!isAutoPlaying) return
-    const interval = setInterval(nextSlide, 5000)
-    return () => clearInterval(interval)
-  }, [isAutoPlaying, nextSlide])
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
+
+    if (isAutoPlaying && totalSlides > 1) {
+      intervalRef.current = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % totalSlides)
+      }, 5000)
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+  }, [isAutoPlaying, totalSlides])
+
+  // Get current 3 testimonials for the slide
+  const getCurrentTestimonials = () => {
+    const startIndex = currentSlide * 3
+    return homepage.testimonials.slice(startIndex, startIndex + 3)
+  }
 
   return (
     <>
@@ -246,7 +226,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="section-padding bg-gray-50 overflow-hidden">
+      <section className="section-padding bg-gradient-to-b from-gray-50 to-white overflow-hidden">
         <div className="container-custom">
           <SectionHeading
             title="What Our Customers Say"
@@ -255,113 +235,74 @@ export default function Home() {
 
           {/* Slider Container */}
           <div
-            className="relative touch-pan-y"
+            className="relative"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
           >
             {/* Navigation Buttons */}
             <button
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 sm:-translate-x-2 md:-translate-x-4 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-pharmacy-red hover:shadow-xl transition-all active:scale-95"
-              aria-label="Previous testimonial"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-6 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-pharmacy-red hover:shadow-xl transition-all active:scale-95"
+              aria-label="Previous testimonials"
             >
               <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 sm:translate-x-2 md:translate-x-4 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-pharmacy-red hover:shadow-xl transition-all active:scale-95"
-              aria-label="Next testimonial"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-6 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-pharmacy-red hover:shadow-xl transition-all active:scale-95"
+              aria-label="Next testimonials"
             >
               <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
             </button>
 
-            {/* Slides Track */}
-            <div className="overflow-hidden mx-10 sm:mx-12 md:mx-16">
+            {/* Testimonial Cards Slider */}
+            <div className="overflow-hidden mx-6 md:mx-10">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="grid md:grid-cols-3 gap-6"
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  className="flex flex-wrap justify-center gap-8"
                 >
-                  {[0, 1, 2].map((offset) => {
-                    const index = (currentSlide + offset) % testimonials.length
-                    const testimonial = testimonials[index]
-                    return (
-                      <div
-                        key={`${currentSlide}-${offset}`}
-                        className={`bg-white rounded-2xl p-6 md:p-8 shadow-md hover:shadow-lg transition-shadow h-full flex flex-col ${offset > 0 ? 'hidden md:flex' : ''
-                          } ${offset > 1 ? 'md:hidden lg:flex' : ''}`}
-                      >
-                        <div className="flex items-center mb-4">
-                          {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-5 h-5 text-yellow-400 fill-yellow-400"
-                            />
-                          ))}
-                        </div>
-                        <div className="relative flex-grow">
-                          <Quote className="w-8 h-8 text-pharmacy-red/20 absolute -top-2 -left-2" />
-                          <p className="text-gray-600 leading-relaxed relative z-10 pl-4">
-                            {testimonial.text}
-                          </p>
-                        </div>
-                        <div className="mt-6 pt-4 border-t border-gray-100 flex items-center">
-                          <div className="w-12 h-12 rounded-full overflow-hidden mr-3 flex-shrink-0 bg-gradient-to-br from-pharmacy-red to-pharmacy-red-dark flex items-center justify-center">
-                            <Image
-                              src={testimonial.image}
-                              alt={testimonial.name}
-                              width={48}
-                              height={48}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                e.currentTarget.style.display = 'none'
-                                e.currentTarget.nextElementSibling?.classList.remove('hidden')
-                              }}
-                            />
-                            <span className="hidden text-white font-montserrat font-bold text-sm">
-                              {testimonial.initials}
-                            </span>
-                          </div>
-                          <div>
-                            <p className="font-montserrat font-semibold text-gray-900">
-                              {testimonial.name}
-                            </p>
-                            <p className="text-sm text-gray-500">{testimonial.location}</p>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
+                  {getCurrentTestimonials().map((testimonial, index) => (
+                    <div
+                      key={`${currentSlide}-${testimonial.name}`}
+                      className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)]"
+                    >
+                      <TestimonialCard
+                        name={testimonial.name}
+                        role={testimonial.role}
+                        rating={testimonial.rating}
+                        text={testimonial.text}
+                        image={testimonial.image}
+                        index={currentSlide * 3 + index}
+                      />
+                    </div>
+                  ))}
                 </motion.div>
               </AnimatePresence>
             </div>
 
             {/* Dot Indicators */}
             <div className="flex justify-center items-center mt-8 gap-2">
-              {testimonials.map((_, index) => (
+              {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === currentSlide
-                    ? 'bg-pharmacy-red w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
+                  onClick={() => {
+                    setCurrentSlide(index)
+                    setIsAutoPlaying(false)
+                  }}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? 'bg-pharmacy-red w-8'
+                      : 'bg-gray-300 hover:bg-gray-400 w-2.5'
+                  }`}
+                  aria-label={`Go to testimonials page ${index + 1}`}
                 />
               ))}
             </div>
-
-            {/* Mobile Navigation Hint */}
-            <p className="text-center text-gray-400 text-sm mt-4 md:hidden">
-              Swipe or tap arrows to see more
-            </p>
           </div>
         </div>
       </section>
