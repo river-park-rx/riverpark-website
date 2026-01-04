@@ -19,6 +19,9 @@ import {
   DollarSign,
   ChevronLeft,
   ChevronRight,
+  ClipboardList,
+  Bell,
+  Package,
 } from 'lucide-react'
 import ServiceCard from '@/components/ui/ServiceCard'
 import AnimatedSection from '@/components/ui/AnimatedSection'
@@ -169,7 +172,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-gray-100">
         <div className="container-custom">
           <SectionHeading
             title="Our Pharmacy Services"
@@ -196,8 +199,126 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section className="section-padding bg-white relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-medical-blue/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-pharmacy-red/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container-custom relative z-10">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-12">
+            <div className="mb-6 lg:mb-0">
+              <h2 className="heading-2 text-gray-900 mb-2">
+                How <span className="text-pharmacy-red">River Park Pharmacy</span> Works
+              </h2>
+              <p className="text-gray-600 max-w-xl">
+                Getting your prescriptions has never been easier. We handle everything so you can focus on your health.
+              </p>
+            </div>
+            <Button href="/prescriptions" variant="outline">
+              Get Started
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            {/* Step 1 */}
+            <AnimatedSection delay={0} className="h-full">
+              <div className="relative h-full">
+                {/* Connector line - hidden on mobile */}
+                <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-gradient-to-r from-pharmacy-red/30 to-medical-blue/30"></div>
+
+                <div className="relative bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+                  {/* Step number */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-pharmacy-red text-white rounded-full flex items-center justify-center font-montserrat font-bold text-sm">
+                    1
+                  </div>
+
+                  {/* Icon */}
+                  <div className="w-20 h-20 mx-auto mb-6 relative flex-shrink-0">
+                    <div className="w-full h-full bg-white rounded-2xl shadow-md flex items-center justify-center">
+                      <ClipboardList className="w-10 h-10 text-pharmacy-red" />
+                    </div>
+                    {/* Decorative ring */}
+                    <div className="absolute -inset-2 border-2 border-dashed border-pharmacy-red/20 rounded-2xl"></div>
+                  </div>
+
+                  <h3 className="font-montserrat font-bold text-xl text-gray-900 mb-3">
+                    Submit Your Prescription
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+                    Transfer your prescription online, call us, or have your doctor send it directly. We make it simple.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Step 2 */}
+            <AnimatedSection delay={0.15} className="h-full">
+              <div className="relative h-full">
+                {/* Connector line - hidden on mobile */}
+                <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-gradient-to-r from-medical-blue/30 to-pharmacy-red/30"></div>
+
+                <div className="relative bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+                  {/* Step number */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-medical-blue text-white rounded-full flex items-center justify-center font-montserrat font-bold text-sm">
+                    2
+                  </div>
+
+                  {/* Icon */}
+                  <div className="w-20 h-20 mx-auto mb-6 relative flex-shrink-0">
+                    <div className="w-full h-full bg-white rounded-2xl shadow-md flex items-center justify-center">
+                      <Bell className="w-10 h-10 text-medical-blue" />
+                    </div>
+                    {/* Decorative ring */}
+                    <div className="absolute -inset-2 border-2 border-dashed border-medical-blue/20 rounded-2xl"></div>
+                  </div>
+
+                  <h3 className="font-montserrat font-bold text-xl text-gray-900 mb-3">
+                    Get Notified When Ready
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+                    We'll prepare your medication and notify you when it's ready. No waiting, no hassle.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Step 3 */}
+            <AnimatedSection delay={0.3} className="h-full">
+              <div className="relative h-full">
+                <div className="relative bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+                  {/* Step number */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-pharmacy-red text-white rounded-full flex items-center justify-center font-montserrat font-bold text-sm">
+                    3
+                  </div>
+
+                  {/* Icon */}
+                  <div className="w-20 h-20 mx-auto mb-6 relative flex-shrink-0">
+                    <div className="w-full h-full bg-white rounded-2xl shadow-md flex items-center justify-center">
+                      <Package className="w-10 h-10 text-pharmacy-red" />
+                    </div>
+                    {/* Decorative ring */}
+                    <div className="absolute -inset-2 border-2 border-dashed border-pharmacy-red/20 rounded-2xl"></div>
+                  </div>
+
+                  <h3 className="font-montserrat font-bold text-xl text-gray-900 mb-3">
+                    Pick Up or Get Delivery
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+                    Visit us at your convenience or enjoy our free local delivery service right to your door.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <SectionHeading
             title={`Why Choose ${company.name}`}
@@ -226,7 +347,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+      <section className="section-padding bg-gradient-to-b from-gray-100 to-gray-50 overflow-hidden">
         <div className="container-custom">
           <SectionHeading
             title="What Our Customers Say"

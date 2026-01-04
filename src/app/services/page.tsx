@@ -69,10 +69,49 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* OTC Card Section */}
+      <section className="py-16 md:py-20 bg-gradient-to-br from-medical-blue/15 via-blue-50 to-medical-blue/10 relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 rounded-full bg-medical-blue/10 blur-3xl"></div>
+          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-48 h-48 rounded-full bg-pharmacy-red/5 blur-2xl"></div>
+        </div>
+        <div className="container-custom relative z-10">
+          <AnimatedSection>
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+              <div className="lg:max-w-2xl">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-bold text-medical-blue-dark mb-4">
+                  WE ACCEPT OTC CARD
+                </h2>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  We provide you with the support, products, pharmacy services and the wellness with plenty savings opportunity you need to keep your whole family healthy.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-6">
+                {/* OTC Medicare Card */}
+                <div className="bg-white rounded-xl px-10 py-6 shadow-xl border border-medical-blue/20">
+                  <div className="text-center">
+                    <span className="text-5xl font-bold text-medical-blue">OTC</span>
+                    <p className="text-medical-blue text-lg font-semibold italic mt-1">medicare</p>
+                  </div>
+                </div>
+                {/* OTC Network Card */}
+                <div className="bg-white rounded-xl px-10 py-6 shadow-xl border border-medical-blue/20">
+                  <div className="text-center">
+                    <span className="text-5xl font-bold text-medical-blue-dark">OTC</span>
+                    <p className="text-medical-blue-dark text-lg font-semibold mt-1">network</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Services List */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="space-y-16 md:space-y-24">
+          <div className="space-y-10 md:space-y-14">
             {services.list.map((service, index) => (
               <div
                 key={service.id}
@@ -130,7 +169,7 @@ export default function ServicesPage() {
                   </div>
                 </AnimatedSection>
                 {index < services.list.length - 1 && (
-                  <div className="border-b border-gray-100 mt-16 md:mt-24"></div>
+                  <div className="border-b border-gray-100 mt-10 md:mt-14"></div>
                 )}
               </div>
             ))}
