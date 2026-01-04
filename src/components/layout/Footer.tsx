@@ -167,7 +167,7 @@ export default function Footer() {
                 <Clock className="w-5 h-5 text-pharmacy-red mr-3 mt-0.5 flex-shrink-0" />
                 <span className="text-gray-400 text-sm">
                   {hours.formatted.map((line, index) => (
-                    <span key={index}>
+                    <span key={index} className="whitespace-nowrap">
                       {line}
                       {index < hours.formatted.length - 1 && <br />}
                     </span>
