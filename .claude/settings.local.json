@@ -11,7 +11,9 @@
       "Bash(if not exist \"c:\\\\PersonalProjects\\\\riverparkrx-website\\\\public\\\\images\" mkdir \"c:\\\\PersonalProjects\\\\riverparkrx-website\\\\public\\\\images\")",
       "Bash(if not exist \"c:\\\\PersonalProjects\\\\riverparkrx-website\\\\src\\\\app\\\\api\\\\contact\" mkdir \"c:\\\\PersonalProjects\\\\riverparkrx-website\\\\src\\\\app\\\\api\\\\contact\")",
       "Bash(mkdir:*)",
-      "Bash(del \"c:\\\\PersonalProjects\\\\riverparkrx-website\\\\src\\\\content\\\\siteContent.json\")"
+      "Bash(del \"c:\\\\PersonalProjects\\\\riverparkrx-website\\\\src\\\\content\\\\siteContent.json\")",
+      "Bash(ls -la \"c:\\\\PersonalProjects\\\\riverpark-website\\\\src\\\\app\"\" | grep -E \"page)",
+      "Bash(layout \")"
     ]
   }
 }

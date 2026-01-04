@@ -36,12 +36,12 @@ export default function TestimonialCard({
   const accentColor = accentColors[index % accentColors.length]
 
   return (
-    <div className="group relative bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden h-full flex flex-col">
+    <div className="group relative bg-white rounded-xl sm:rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden h-full flex flex-col">
       {/* Card Content */}
-      <div className="pt-16 pb-8 px-6 text-center flex flex-col flex-grow">
+      <div className="pt-14 sm:pt-16 pb-6 sm:pb-8 px-4 sm:px-6 text-center flex flex-col flex-grow">
         {/* Profile Image - Centered at top */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 pt-6">
-          <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 pt-4 sm:pt-6">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-3 sm:border-4 border-white shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 relative">
             <Image
               src={image}
               alt={name}
@@ -55,7 +55,7 @@ export default function TestimonialCard({
               }}
             />
             <div className="fallback-initials hidden absolute inset-0 bg-gradient-to-br from-medical-blue to-medical-blue-dark flex items-center justify-center">
-              <span className="text-white font-montserrat font-bold text-xl">
+              <span className="text-white font-montserrat font-bold text-lg sm:text-xl">
                 {initials}
               </span>
             </div>
@@ -63,24 +63,24 @@ export default function TestimonialCard({
         </div>
 
         {/* Spacer for image */}
-        <div className="h-12" />
+        <div className="h-8 sm:h-12" />
 
         {/* Name */}
-        <h3 className="font-montserrat font-semibold text-lg text-gray-900 mb-1">
+        <h3 className="font-montserrat font-semibold text-base sm:text-lg text-gray-900 mb-1">
           {name}
         </h3>
 
         {/* Role/Position */}
-        <p className="text-sm text-gray-500 font-medium mb-3">
+        <p className="text-xs sm:text-sm text-gray-500 font-medium mb-2 sm:mb-3">
           {role}
         </p>
 
         {/* Star Rating */}
-        <div className="flex justify-center gap-1 mb-5">
+        <div className="flex justify-center gap-0.5 sm:gap-1 mb-3 sm:mb-5">
           {[...Array(5)].map((_, i) => (
             <Star
               key={i}
-              className={`w-4 h-4 ${
+              className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${
                 i < rating
                   ? 'text-yellow-400 fill-yellow-400'
                   : 'text-gray-300'
@@ -90,14 +90,14 @@ export default function TestimonialCard({
         </div>
 
         {/* Testimonial Text */}
-        <p className="text-gray-600 text-sm leading-relaxed flex-grow font-open-sans">
+        <p className="text-gray-600 text-xs sm:text-sm leading-relaxed flex-grow font-open-sans">
           "{text}"
         </p>
       </div>
 
       {/* Accent Bar at Bottom */}
       <div
-        className="h-3 flex-shrink-0"
+        className="h-2 sm:h-3 flex-shrink-0"
         style={{ backgroundColor: accentColor }}
       />
     </div>
