@@ -88,7 +88,7 @@ export default function ServicesPage() {
                     <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                       <div className="flex items-center mb-3 sm:mb-4">
                         <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-pharmacy-red rounded-lg sm:rounded-xl flex items-center justify-center text-white mr-3 sm:mr-4">
-                          {React.cloneElement(serviceIcons[service.id] as React.ReactElement || <Pill className="w-8 h-8" />, { className: 'w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8' })}
+                          {React.cloneElement((serviceIcons[service.id] || <Pill className="w-8 h-8" />) as React.ReactElement<{ className?: string }>, { className: 'w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8' })}
                         </div>
                         <h2 className="text-lg sm:text-xl md:text-2xl font-montserrat font-bold text-gray-900">
                           {service.title}

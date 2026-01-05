@@ -225,7 +225,7 @@ export default function ContactPage() {
               <AnimatedSection key={info.title} delay={index * 0.1}>
                 <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 h-full shadow-md hover:shadow-lg transition-all duration-300">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-pharmacy-red/10 rounded-lg sm:rounded-xl flex items-center justify-center text-pharmacy-red mb-3 md:mb-4">
-                    {React.cloneElement(info.icon as React.ReactElement, { className: 'w-5 h-5 sm:w-6 sm:h-6' })}
+                    {React.cloneElement(info.icon as React.ReactElement<{ className?: string }>, { className: 'w-5 h-5 sm:w-6 sm:h-6' })}
                   </div>
                   <h3 className="font-montserrat font-semibold text-sm sm:text-base md:text-lg text-gray-900 mb-2 md:mb-3">
                     {info.title}
