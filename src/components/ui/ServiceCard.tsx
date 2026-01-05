@@ -21,18 +21,18 @@ export default function ServiceCard({
 }: ServiceCardProps) {
   const CardContent = () => (
     <>
-      <div className="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-pharmacy-red mb-4 group-hover:bg-pharmacy-red group-hover:text-white transition-colors duration-300">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-red-50 rounded-lg sm:rounded-xl flex items-center justify-center text-pharmacy-red mb-3 md:mb-4 group-hover:bg-pharmacy-red group-hover:text-white transition-colors duration-300 [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6 md:[&>svg]:w-7 md:[&>svg]:h-7">
         {icon}
       </div>
-      <h3 className="font-montserrat font-semibold text-lg text-gray-900 mb-2">
+      <h3 className="font-montserrat font-semibold text-sm sm:text-base md:text-lg text-gray-900 mb-1 sm:mb-2">
         {title}
       </h3>
-      <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{description}</p>
     </>
   )
 
   const cardClasses =
-    'group card bg-white p-6 h-full flex flex-col items-start'
+    'group card bg-white p-4 sm:p-5 md:p-6 h-full flex flex-col items-start'
 
   return (
     <motion.div

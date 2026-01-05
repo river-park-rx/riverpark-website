@@ -46,43 +46,43 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="container-custom py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div className="container-custom py-6 sm:py-8 md:py-12">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-10">
           {/* Brand & Description */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center mb-4">
+          <div className="col-span-2 lg:col-span-1">
+            <Link href="/" className="flex items-center mb-2 sm:mb-3">
               <Image
                 src="/images/mainLogo/logo.png"
                 alt={company.name}
                 width={56}
                 height={56}
-                className="w-14 h-14 bg-white rounded-full p-1"
+                className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white rounded-full p-0.5 sm:p-1"
               />
-              <div className="ml-3">
-                <span className="text-lg font-montserrat font-bold text-white">
+              <div className="ml-2 sm:ml-3">
+                <span className="text-sm sm:text-base md:text-lg font-montserrat font-bold text-white">
                   River Park
                 </span>
-                <span className="text-lg font-montserrat font-bold text-medical-blue ml-1">
+                <span className="text-sm sm:text-base md:text-lg font-montserrat font-bold text-medical-blue ml-1">
                   Pharmacy
                 </span>
               </div>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-2 sm:mb-3">
               {company.description}
             </p>
-            <div className="flex items-center text-sm text-gray-400 mb-4">
-              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+            <div className="flex items-center text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3">
+              <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full mr-1.5 sm:mr-2"></span>
               Licensed Pharmacy
             </div>
             {/* Social Media Icons */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
               {socialLinks.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 bg-gray-800 hover:bg-pharmacy-red rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300"
+                  className="w-8 h-8 sm:w-9 sm:h-9 bg-gray-800 hover:bg-pharmacy-red rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300"
                   aria-label={`Follow us on ${item.name}`}
                 >
                   <item.icon />
@@ -93,15 +93,15 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-montserrat font-semibold text-lg mb-4">
+            <h3 className="font-montserrat font-semibold text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2 md:mb-3">
               Quick Links
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1 sm:space-y-1.5 md:space-y-2">
               {navigation.footer.quickLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
                   >
                     {link.label}
                   </Link>
@@ -112,15 +112,15 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-montserrat font-semibold text-lg mb-4">
+            <h3 className="font-montserrat font-semibold text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2 md:mb-3">
               Our Services
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1 sm:space-y-1.5 md:space-y-2">
               {navigation.footer.services.map((service) => (
                 <li key={service.label}>
                   <Link
                     href={service.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
                   >
                     {service.label}
                   </Link>
@@ -130,42 +130,41 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h3 className="font-montserrat font-semibold text-lg mb-4">
+          <div className="col-span-2 sm:col-span-1">
+            <h3 className="font-montserrat font-semibold text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2 md:mb-3">
               Contact Us
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-1.5 sm:space-y-2 md:space-y-2.5">
               <li className="flex items-start">
-                <MapPin className="w-5 h-5 text-pharmacy-red mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-pharmacy-red mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-400 text-xs sm:text-sm leading-tight">
                   {contactInfo.address.street}
-                  <br />
-                  {contactInfo.address.suite}
+                  {contactInfo.address.suite && <><br />{contactInfo.address.suite}</>}
                   <br />
                   {contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zip}
                 </span>
               </li>
               <li className="flex items-center">
-                <Phone className="w-5 h-5 text-pharmacy-red mr-3 flex-shrink-0" />
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-pharmacy-red mr-2 sm:mr-3 flex-shrink-0" />
                 <a
                   href={contactInfo.phoneLink}
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm"
                 >
                   {contactInfo.phone}
                 </a>
               </li>
               <li className="flex items-center">
-                <Mail className="w-5 h-5 text-pharmacy-red mr-3 flex-shrink-0" />
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-pharmacy-red mr-2 sm:mr-3 flex-shrink-0" />
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm"
                 >
                   {contactInfo.email}
                 </a>
               </li>
               <li className="flex items-start">
-                <Clock className="w-5 h-5 text-pharmacy-red mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-pharmacy-red mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-400 text-xs sm:text-sm">
                   {hours.formatted.map((line, index) => (
                     <span key={index} className="whitespace-nowrap">
                       {line}
@@ -179,18 +178,18 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-500 text-sm">
+        <div className="border-t border-gray-800 mt-4 sm:mt-6 md:mt-8 pt-3 sm:pt-4 md:pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+            <p className="text-gray-500 text-xs sm:text-sm text-center md:text-left">
               &copy; {new Date().getFullYear()} {company.name}, LLC. All
               rights reserved.
             </p>
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-4 sm:space-x-6">
               {navigation.footer.legal.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-gray-500 hover:text-white transition-colors text-sm"
+                  className="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm"
                 >
                   {link.label}
                 </Link>

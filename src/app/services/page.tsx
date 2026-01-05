@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { motion } from 'framer-motion'
 import {
   Pill,
@@ -70,9 +71,9 @@ export default function ServicesPage() {
       </section>
 
       {/* Services List */}
-      <section className="section-padding bg-white">
+      <section className="py-10 md:py-14 lg:py-16 bg-white">
         <div className="container-custom">
-          <div className="space-y-10 md:space-y-14">
+          <div className="space-y-8 md:space-y-12 lg:space-y-14">
             {services.list.map((service, index) => (
               <div
                 key={service.id}
@@ -81,27 +82,27 @@ export default function ServicesPage() {
               >
                 <AnimatedSection>
                   <div
-                    className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                    className={`grid lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''
                       }`}
                   >
                     <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                      <div className="flex items-center mb-4">
-                        <div className="w-14 h-14 bg-pharmacy-red rounded-xl flex items-center justify-center text-white mr-4">
-                          {serviceIcons[service.id] || <Pill className="w-8 h-8" />}
+                      <div className="flex items-center mb-3 sm:mb-4">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-pharmacy-red rounded-lg sm:rounded-xl flex items-center justify-center text-white mr-3 sm:mr-4">
+                          {React.cloneElement((serviceIcons[service.id] || <Pill className="w-8 h-8" />) as React.ReactElement<{ className?: string }>, { className: 'w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8' })}
                         </div>
-                        <h2 className="heading-3 text-gray-900">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-montserrat font-bold text-gray-900">
                           {service.title}
                         </h2>
                       </div>
-                      <p className="body-text mb-6">{service.description}</p>
-                      <ul className="space-y-3 mb-6">
+                      <p className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">{service.description}</p>
+                      <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                         {service.features.map((feature, featureIndex) => (
                           <li
                             key={featureIndex}
                             className="flex items-start"
                           >
-                            <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-600">{feature}</span>
+                            <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
+                            <span className="text-gray-600 text-sm sm:text-base">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -111,7 +112,7 @@ export default function ServicesPage() {
                       </Button>
                     </div>
                     <div
-                      className={`${index % 2 === 1 ? 'lg:order-1' : ''
+                      className={`hidden lg:block ${index % 2 === 1 ? 'lg:order-1' : ''
                         }`}
                     >
                       <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 md:p-12 flex items-center justify-center min-h-[280px]">
@@ -130,7 +131,7 @@ export default function ServicesPage() {
                   </div>
                 </AnimatedSection>
                 {index < services.list.length - 1 && (
-                  <div className="border-b border-gray-100 mt-10 md:mt-14"></div>
+                  <div className="border-b border-gray-100 mt-8 md:mt-12 lg:mt-14"></div>
                 )}
               </div>
             ))}
@@ -139,18 +140,18 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-10 md:py-14 lg:py-16 bg-gray-50">
         <div className="container-custom">
-          <AnimatedSection className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h2 className="heading-2 text-gray-900 mb-4">
+          <AnimatedSection className="bg-white rounded-xl md:rounded-2xl shadow-lg p-5 sm:p-6 md:p-10 lg:p-12">
+            <div className="grid lg:grid-cols-2 gap-5 md:gap-8 items-center">
+              <div className="text-center lg:text-left">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-montserrat font-bold text-gray-900 mb-2 sm:mb-4">
                   {services.ctaSection.title}
                 </h2>
-                <p className="body-text mb-6">
+                <p className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">
                   {services.ctaSection.description}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                   <Button href="/contact">
                     {services.ctaSection.primaryCta}
                     <ArrowRight className="w-4 h-4 ml-2" />
@@ -161,16 +162,16 @@ export default function ServicesPage() {
                   </Button>
                 </div>
               </div>
-              <div className="text-center lg:text-right">
-                <div className="inline-block bg-pharmacy-red/5 rounded-2xl p-6">
-                  <p className="text-gray-600 mb-2">Pharmacy Hours</p>
-                  <p className="font-montserrat font-semibold text-gray-900">
+              <div className="text-center lg:text-right mt-4 lg:mt-0">
+                <div className="inline-block bg-pharmacy-red/5 rounded-xl md:rounded-2xl p-4 sm:p-6">
+                  <p className="text-gray-600 text-sm sm:text-base mb-2">Pharmacy Hours</p>
+                  <p className="font-montserrat font-semibold text-gray-900 text-sm sm:text-base">
                     {hours.weekday.days}: {hours.weekday.open} - {hours.weekday.close}
                   </p>
-                  <p className="font-montserrat font-semibold text-gray-900">
+                  <p className="font-montserrat font-semibold text-gray-900 text-sm sm:text-base">
                     {hours.saturday.days}: {hours.saturday.open} - {hours.saturday.close}
                   </p>
-                  <p className="text-gray-500 mt-2">{hours.sunday.days}: {hours.sunday.status}</p>
+                  <p className="text-gray-500 text-xs sm:text-sm mt-2">{hours.sunday.days}: {hours.sunday.status}</p>
                 </div>
               </div>
             </div>

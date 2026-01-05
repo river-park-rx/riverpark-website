@@ -197,13 +197,13 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="section-padding bg-gray-100">
+      <section className="py-10 md:py-14 lg:py-16 bg-gray-100">
         <div className="container-custom">
           <SectionHeading
             title="Our Pharmacy Services"
             subtitle="We offer a comprehensive range of pharmacy services to meet all your healthcare needs."
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {homepage.services.map((service, index) => (
               <ServiceCard
                 key={service.title}
@@ -215,7 +215,7 @@ export default function Home() {
               />
             ))}
           </div>
-          <AnimatedSection delay={0.4} className="text-center mt-10">
+          <AnimatedSection delay={0.4} className="text-center mt-6 md:mt-10">
             <Button href="/services" variant="outline">
               View All Services
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -384,26 +384,26 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="section-padding bg-gray-50">
+      <section className="py-10 md:py-14 lg:py-16 bg-gray-50">
         <div className="container-custom">
           <SectionHeading
             title={`Why Choose ${company.name}`}
             subtitle="We're more than just a pharmacy — we're your trusted healthcare partner in the community."
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {homepage.whyChooseUs.map((item, index) => (
               <AnimatedSection
                 key={item.title}
                 delay={index * 0.1}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-pharmacy-red to-pharmacy-red-dark rounded-2xl flex items-center justify-center text-white mx-auto mb-4">
-                  {whyChooseUsIcons[item.title] || <Heart className="w-6 h-6" />}
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-pharmacy-red to-pharmacy-red-dark rounded-xl md:rounded-2xl flex items-center justify-center text-white mx-auto mb-3 md:mb-4">
+                  {whyChooseUsIcons[item.title] || <Heart className="w-5 h-5 sm:w-6 sm:h-6" />}
                 </div>
-                <h3 className="font-montserrat font-semibold text-lg text-gray-900 mb-2">
+                <h3 className="font-montserrat font-semibold text-sm sm:text-base md:text-lg text-gray-900 mb-1 sm:mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
                   {item.description}
                 </p>
               </AnimatedSection>
@@ -460,7 +460,6 @@ export default function Home() {
                     >
                       <TestimonialCard
                         name={testimonial.name}
-                        role={testimonial.role}
                         rating={testimonial.rating}
                         text={testimonial.text}
                         image={testimonial.image}
@@ -472,40 +471,31 @@ export default function Home() {
               </AnimatePresence>
             </div>
 
-            {/* Dot Indicators */}
-            <div className="flex justify-center items-center mt-6 md:mt-8 gap-1.5 sm:gap-2">
-              {Array.from({ length: totalSlides }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setCurrentSlide(index)
-                    setIsAutoPlaying(false)
-                  }}
-                  className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? 'bg-pharmacy-red w-5 sm:w-6 md:w-8'
-                      : 'bg-gray-300 hover:bg-gray-400 w-2 md:w-2.5'
-                  }`}
-                  aria-label={`Go to testimonials page ${index + 1}`}
+            {/* Progress Bar Indicator */}
+            <div className="flex justify-center items-center mt-6 md:mt-8">
+              <div className="w-24 sm:w-32 md:w-40 h-1.5 sm:h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-pharmacy-red rounded-full transition-all duration-300 ease-out"
+                  style={{ width: `${((currentSlide + 1) / totalSlides) * 100}%` }}
                 />
-              ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Trust Signals Section */}
-      <section className="py-12 bg-gradient-to-r from-medical-blue to-medical-blue-dark">
+      <section className="py-8 md:py-10 lg:py-12 bg-gradient-to-r from-medical-blue to-medical-blue-dark">
         <div className="container-custom">
           <AnimatedSection direction="fade">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
               {homepage.trustSignals.map((signal, index) => (
                 <div
                   key={index}
                   className="flex items-center justify-center text-center"
                 >
-                  <CheckCircle className="w-5 h-5 text-white/80 mr-2 flex-shrink-0" />
-                  <span className="text-white font-montserrat font-medium text-sm md:text-base">
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white/80 mr-1.5 sm:mr-2 flex-shrink-0" />
+                  <span className="text-white font-montserrat font-medium text-xs sm:text-sm md:text-base">
                     {signal}
                   </span>
                 </div>
@@ -516,28 +506,28 @@ export default function Home() {
       </section>
 
       {/* Contact Preview Section */}
-      <section className="section-padding bg-gray-50">
+      <section className="py-10 md:py-14 lg:py-16 bg-gray-50">
         <div className="container-custom">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-white rounded-xl md:rounded-2xl shadow-lg overflow-hidden">
             <div className="grid lg:grid-cols-2">
-              <div className="p-8 md:p-12">
+              <div className="p-5 sm:p-6 md:p-10 lg:p-12">
                 <AnimatedSection>
-                  <h2 className="heading-2 text-gray-900 mb-4">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-montserrat font-bold text-gray-900 mb-3 md:mb-4">
                     Visit Us Today
                   </h2>
-                  <p className="body-text mb-8">
+                  <p className="text-gray-600 text-sm sm:text-base mb-5 md:mb-8">
                     Stop by our pharmacy and experience the personalized care
                     that sets us apart. Our friendly team is ready to assist you
                     with all your healthcare needs.
                   </p>
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-3 sm:space-y-4 mb-5 md:mb-8">
                     <div className="flex items-start">
-                      <MapPin className="w-6 h-6 text-pharmacy-red mr-4 mt-1 flex-shrink-0" />
+                      <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-pharmacy-red mr-3 sm:mr-4 mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="font-montserrat font-semibold text-gray-900">
+                        <p className="font-montserrat font-semibold text-sm sm:text-base text-gray-900">
                           Our Location
                         </p>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 text-xs sm:text-sm">
                           {contactInfo.address.street}, {contactInfo.address.suite}
                           <br />
                           {contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zip}
@@ -545,26 +535,26 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <Phone className="w-6 h-6 text-pharmacy-red mr-4 mt-1 flex-shrink-0" />
+                      <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-pharmacy-red mr-3 sm:mr-4 mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="font-montserrat font-semibold text-gray-900">
+                        <p className="font-montserrat font-semibold text-sm sm:text-base text-gray-900">
                           Phone Number
                         </p>
                         <a
                           href={contactInfo.phoneLink}
-                          className="text-medical-blue hover:text-medical-blue-dark transition-colors"
+                          className="text-medical-blue hover:text-medical-blue-dark transition-colors text-xs sm:text-sm"
                         >
                           {contactInfo.phone}
                         </a>
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <Clock className="w-6 h-6 text-pharmacy-red mr-4 mt-1 flex-shrink-0" />
+                      <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-pharmacy-red mr-3 sm:mr-4 mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="font-montserrat font-semibold text-gray-900">
+                        <p className="font-montserrat font-semibold text-sm sm:text-base text-gray-900">
                           Business Hours
                         </p>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 text-xs sm:text-sm">
                           {hours.weekday.days}: {hours.weekday.open} - {hours.weekday.close}
                           <br />
                           {hours.saturday.days}: {hours.saturday.open} - {hours.saturday.close} | {hours.sunday.days}: {hours.sunday.status}
@@ -578,12 +568,12 @@ export default function Home() {
                   </Button>
                 </AnimatedSection>
               </div>
-              <div className="min-h-[300px] lg:min-h-0">
+              <div className="min-h-[250px] sm:min-h-[300px] lg:min-h-0">
                 <iframe
                   src={contactInfo.address.mapEmbedUrl}
                   width="100%"
                   height="100%"
-                  style={{ border: 0, minHeight: '350px' }}
+                  style={{ border: 0, minHeight: '280px' }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -597,28 +587,28 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-pharmacy-red">
+      <section className="py-10 md:py-14 lg:py-16 bg-pharmacy-red">
         <div className="container-custom text-center">
           <AnimatedSection>
-            <h2 className="heading-2 text-white mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-montserrat font-bold text-white mb-3 md:mb-4">
               {homepage.ctaSection.title}
             </h2>
-            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-white/90 text-sm sm:text-base md:text-lg mb-5 md:mb-8 max-w-2xl mx-auto">
               {homepage.ctaSection.description}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
                 href="/prescriptions"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-pharmacy-red font-montserrat font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center justify-center px-5 sm:px-6 md:px-8 py-3 md:py-4 bg-white text-pharmacy-red font-montserrat font-semibold text-sm sm:text-base rounded-lg hover:bg-gray-100 transition-colors"
               >
                 {homepage.ctaSection.primaryCta}
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </Link>
               <a
                 href={contactInfo.phoneLink}
-                className="inline-flex items-center justify-center px-8 py-4 bg-transparent text-white border-2 border-white font-montserrat font-semibold rounded-lg hover:bg-white/10 transition-colors"
+                className="inline-flex items-center justify-center px-5 sm:px-6 md:px-8 py-3 md:py-4 bg-transparent text-white border-2 border-white font-montserrat font-semibold text-sm sm:text-base rounded-lg hover:bg-white/10 transition-colors"
               >
-                <Phone className="w-5 h-5 mr-2" />
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Call Us Now
               </a>
             </div>

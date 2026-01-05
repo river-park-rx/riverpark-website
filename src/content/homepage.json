@@ -54,39 +54,106 @@
   ],
   "testimonials": [
     {
-      "name": "Maria S.",
-      "role": "Local Resident",
-      "rating": 3,
-      "text": "The pharmacists here truly care about their customers. They took the time to explain my medications and even helped me find a more affordable option.",
-      "image": "/images/testimonials/t1.png"
-    },
-    {
-      "name": "James T.",
-      "role": "Patient since 2019",
+      "name": "Vanessa Hall",
       "rating": 5,
-      "text": "I switched from a big chain pharmacy and the difference is night and day. Free delivery, no long waits, and they actually know my name.",
-      "image": "/images/testimonials/t1.png"
+      "text": "My medications are always prepared on time whenever I arrive. The service here is consistently excellent, and I’m always treated with courtesy, kindness, and respect. This pharmacy never fails to impress me.",
+      "image": ""
     },
     {
-      "name": "Linda M.",
-      "role": "Family Caregiver",
-      "rating": 4,
-      "text": "The pill packaging service has been a lifesaver for my elderly mother. Everything is organized by day and time — no more confusion.",
-      "image": "/images/testimonials/t1.png"
+      "name": "Krinda Williams",
+      "rating": 5,
+      "text": "I’m truly thankful for the pleasant and supportive staff. They ensure my medications are always ready and even deliver them when I’m unable to come in myself, which makes everything much easier.",
+      "image": ""
     },
     {
-      "name": "Robert K.",
-      "role": "New Patient",
-      "rating": 2,
-      "text": "After my surgery, the team helped coordinate all my new medications and even called to check on me. You don't get that from big chains.",
-      "image": "/images/testimonials/t1.png"
+      "name": "Elaine Knibbs",
+      "rating": 5,
+      "text": "This is the best pharmacy I’ve ever used. The staff are professional, knowledgeable, and always take time to explain things clearly. Prices are affordable, and I confidently recommend them to friends and family.",
+      "image": ""
     },
     {
-      "name": "Susan W.",
-      "role": "Long-term Patient",
-      "rating": 1,
-      "text": "They saved me over $200 a month by finding generic alternatives and manufacturer coupons. The pharmacist reviewed all my medications.",
-      "image": "/images/testimonials/t1.png"
+      "name": "Shaniqua Ivory",
+      "rating": 5,
+      "text": "I send all my prescriptions here because the staff are fast, friendly, and extremely helpful. The pharmacist is very knowledgeable and always answers questions, making this my go-to pharmacy for all my needs.",
+      "image": ""
+    },
+    {
+      "name": "Rhonda Gully",
+      "rating": 5,
+      "text": "This pharmacy offers great discounts that truly help save money. The staff are polite, knowledgeable, and always ensure my prescriptions are completed accurately and on time.",
+      "image": ""
+    },
+    {
+      "name": "Ernestine Acosta",
+      "rating": 5,
+      "text": "They carry almost everything I need, and if something isn’t available, they’re happy to order it. The staff are pleasant, helpful, and make every visit a comfortable experience.",
+      "image": ""
+    },
+    {
+      "name": "Wanda Mason",
+      "rating": 5,
+      "text": "This is the best pharmacy I’ve ever visited. They make multiple efforts to contact you about prescriptions and even offer delivery, showing genuine care and dedication to service.",
+      "image": ""
+    },
+    {
+      "name": "Jahlil Mack",
+      "rating": 5,
+      "text": "The staff always go above and beyond to make sure you receive your medication. They’re courteous, caring, and even delivered my meds after closing, which truly shows commitment.",
+      "image": ""
+    },
+    {
+      "name": "Carolyn Holley",
+      "rating": 5,
+      "text": "This local pharmacy truly cares about its community. Prescriptions are handled quickly and professionally, and the staff are pleasant, supportive, and genuinely invested in helping their neighborhood.",
+      "image": ""
+    },
+    {
+      "name": "Parkin Joshua",
+      "rating": 5,
+      "text": "This pharmacy is absolutely amazing. The staff provide incredible support and guidance through the complexities of healthcare, making tough situations easier for customers.",
+      "image": ""
+    },
+    {
+      "name": "Jamie Diaz",
+      "rating": 5,
+      "text": "This is the best pharmacy I’ve ever been to. They offer a wide variety of products, and the staff are organized, hospitable, and always ready to help.",
+      "image": ""
+    },
+    {
+      "name": "Diane Davy",
+      "rating": 5,
+      "text": "Prescriptions are always filled on time, with courtesy calls for refills and convenient delivery options. The friendly staff and smooth pickup process made transferring my prescriptions worthwhile.",
+      "image": ""
+    },
+    {
+      "name": "Kim Ej",
+      "rating": 5,
+      "text": "I’m very impressed with the professionalism and speedy service. Having such a reliable pharmacy so close to home makes managing my medications convenient and stress-free.",
+      "image": ""
+    },
+    {
+      "name": "Jose Rodriguez",
+      "rating": 5,
+      "text": "The staff are highly professional and courteous. My medications are always handled with great care, and the team’s knowledge gives me full confidence in their service.",
+      "image": ""
+    },
+    {
+      "name": "Sabrina Rodriguez",
+      "rating": 5,
+      "text": "This pharmacy is always professional and eager to help. The friendly staff consistently provide excellent service, making it my favorite place to fill prescriptions.",
+      "image": ""
+    },
+    {
+      "name": "Angela Boger",
+      "rating": 5,
+      "text": "The staff were extremely helpful and polite during my first visit. Picking up my medication was quick and easy, and the customer service was excellent.",
+      "image": ""
+    },
+    {
+      "name": "Dorthy Allen",
+      "rating": 5,
+      "text": "I’ve been coming here for over seven years because of their professionalism and courtesy. The consistent quality of service keeps me returning year after year.",
+      "image": ""
     }
   ],
   "ctaSection": {

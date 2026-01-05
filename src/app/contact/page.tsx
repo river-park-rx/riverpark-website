@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Phone,
@@ -218,21 +218,21 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="section-padding bg-gray-50">
+      <section className="py-10 md:py-14 lg:py-16 bg-gray-50">
         <div className="container-custom">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {contactInfoCards.map((info, index) => (
               <AnimatedSection key={info.title} delay={index * 0.1}>
-                <div className="bg-white rounded-xl p-6 h-full shadow-md hover:shadow-lg transition-all duration-300">
-                  <div className="w-14 h-14 bg-pharmacy-red/10 rounded-xl flex items-center justify-center text-pharmacy-red mb-4">
-                    {info.icon}
+                <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 h-full shadow-md hover:shadow-lg transition-all duration-300">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-pharmacy-red/10 rounded-lg sm:rounded-xl flex items-center justify-center text-pharmacy-red mb-3 md:mb-4">
+                    {React.cloneElement(info.icon as React.ReactElement<{ className?: string }>, { className: 'w-5 h-5 sm:w-6 sm:h-6' })}
                   </div>
-                  <h3 className="font-montserrat font-semibold text-lg text-gray-900 mb-3">
+                  <h3 className="font-montserrat font-semibold text-sm sm:text-base md:text-lg text-gray-900 mb-2 md:mb-3">
                     {info.title}
                   </h3>
-                  <div className="space-y-1 mb-4">
+                  <div className="space-y-0.5 sm:space-y-1 mb-3 md:mb-4">
                     {info.details.map((detail, idx) => (
-                      <p key={idx} className="text-gray-600 text-sm">
+                      <p key={idx} className="text-gray-600 text-xs sm:text-sm">
                         {detail}
                       </p>
                     ))}
@@ -240,10 +240,10 @@ export default function ContactPage() {
                   {info.action && (
                     <a
                       href={info.action.href}
-                      className="inline-flex items-center text-medical-blue hover:text-medical-blue-dark font-medium text-sm transition-colors"
+                      className="inline-flex items-center text-medical-blue hover:text-medical-blue-dark font-medium text-xs sm:text-sm transition-colors"
                     >
                       {info.action.label}
-                      <ArrowRight className="w-4 h-4 ml-1" />
+                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                     </a>
                   )}
                 </div>
@@ -252,19 +252,19 @@ export default function ContactPage() {
           </div>
 
           {/* Social Media Section */}
-          <AnimatedSection delay={0.4} className="mt-10">
-            <div className="bg-white rounded-xl p-6 shadow-md text-center">
-              <h3 className="font-montserrat font-semibold text-lg text-gray-900 mb-4">
+          <AnimatedSection delay={0.4} className="mt-6 md:mt-10">
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md text-center">
+              <h3 className="font-montserrat font-semibold text-base sm:text-lg text-gray-900 mb-3 sm:mb-4">
                 Follow Us on Social Media
               </h3>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center justify-center gap-2 sm:gap-3">
                 {socialLinks.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-11 h-11 bg-gray-100 hover:bg-pharmacy-red rounded-lg flex items-center justify-center text-gray-600 hover:text-white transition-all duration-300"
+                    className="w-9 h-9 sm:w-11 sm:h-11 bg-gray-100 hover:bg-pharmacy-red rounded-lg flex items-center justify-center text-gray-600 hover:text-white transition-all duration-300"
                     aria-label={`Follow us on ${item.name}`}
                   >
                     <item.icon />
@@ -277,17 +277,17 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form & Map */}
-      <section id="contact-form" className="section-padding bg-white scroll-mt-24">
+      <section id="contact-form" className="py-10 md:py-14 lg:py-16 bg-white scroll-mt-24">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
             {/* Contact Form */}
             <AnimatedSection>
-              <div className="bg-gray-50 rounded-2xl p-6 md:p-10">
-                <div className="mb-8">
-                  <h2 className="heading-3 text-gray-900 mb-2">
+              <div className="bg-gray-50 rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-10">
+                <div className="mb-6 md:mb-8">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-montserrat font-bold text-gray-900 mb-2">
                     Send Us a Message
                   </h2>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm sm:text-base">
                     Fill out the form below and we'll get back to you as soon as
                     possible.
                   </p>
@@ -471,21 +471,21 @@ export default function ContactPage() {
 
             {/* Embedded Map */}
             <AnimatedSection delay={0.2}>
-              <div className="h-full min-h-[400px] lg:min-h-0 flex flex-col">
-                <div className="bg-gray-100 rounded-2xl overflow-hidden flex-grow flex flex-col">
+              <div className="h-full min-h-[300px] sm:min-h-[350px] lg:min-h-0 flex flex-col">
+                <div className="bg-gray-100 rounded-xl md:rounded-2xl overflow-hidden flex-grow flex flex-col">
                   <iframe
                     src={contactInfo.address.mapEmbedUrl}
                     width="100%"
                     height="100%"
-                    style={{ border: 0, minHeight: '350px' }}
+                    style={{ border: 0, minHeight: '280px' }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="River Park Pharmacy Location"
                     className="flex-grow"
                   />
-                  <div className="p-4 bg-white border-t border-gray-200">
-                    <p className="text-gray-600 text-sm mb-3">
+                  <div className="p-3 sm:p-4 bg-white border-t border-gray-200">
+                    <p className="text-gray-600 text-xs sm:text-sm mb-2 sm:mb-3">
                       {contactInfo.address.street}, {contactInfo.address.suite}<br />
                       {contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zip}
                     </p>
@@ -493,10 +493,10 @@ export default function ContactPage() {
                       href={contactInfo.address.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-medical-blue hover:text-medical-blue-dark font-medium text-sm transition-colors"
+                      className="inline-flex items-center text-medical-blue hover:text-medical-blue-dark font-medium text-xs sm:text-sm transition-colors"
                     >
                       Get Directions
-                      <ArrowRight className="w-4 h-4 ml-1" />
+                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                     </a>
                   </div>
                 </div>
@@ -507,33 +507,33 @@ export default function ContactPage() {
       </section>
 
       {/* Quick Contact CTA */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-10 md:py-14 lg:py-16 bg-gray-50">
         <div className="container-custom">
-          <AnimatedSection className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h2 className="heading-3 text-gray-900 mb-4">
+          <AnimatedSection className="bg-white rounded-xl md:rounded-2xl shadow-lg p-5 sm:p-6 md:p-10 lg:p-12">
+            <div className="grid md:grid-cols-2 gap-5 md:gap-8 items-center">
+              <div className="text-center md:text-left">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-montserrat font-bold text-gray-900 mb-2 sm:mb-4">
                   Need Immediate Assistance?
                 </h2>
-                <p className="body-text">
+                <p className="text-gray-600 text-sm sm:text-base">
                   For urgent prescription needs or time-sensitive questions,
                   please call us directly. Our pharmacists are ready to help
                   during business hours.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 md:justify-end">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:justify-end">
                 <a
                   href={contactInfo.phoneLink}
-                  className="btn-primary flex items-center justify-center"
+                  className="btn-primary flex items-center justify-center text-sm sm:text-base"
                 >
-                  <Phone className="w-5 h-5 mr-2" />
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Call {contactInfo.phone}
                 </a>
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="btn-secondary flex items-center justify-center"
+                  className="btn-secondary flex items-center justify-center text-sm sm:text-base"
                 >
-                  <Mail className="w-5 h-5 mr-2" />
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Email Us
                 </a>
               </div>
@@ -543,27 +543,27 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Teaser */}
-      <section className="section-padding bg-pharmacy-red">
+      <section className="py-10 md:py-14 lg:py-16 bg-pharmacy-red">
         <div className="container-custom text-center">
           <AnimatedSection>
-            <h2 className="heading-2 text-white mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-montserrat font-bold text-white mb-3 md:mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-white/90 text-sm sm:text-base md:text-lg mb-6 md:mb-8 max-w-2xl mx-auto">
               Looking for quick answers? Here are some common questions our
               patients ask.
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto text-left">
               {contactPage.faq.map((question, index) => (
                 <div
                   key={index}
-                  className="bg-white/10 rounded-lg p-4 text-white text-sm"
+                  className="bg-white/10 rounded-lg p-3 sm:p-4 text-white text-xs sm:text-sm"
                 >
                   {question}
                 </div>
               ))}
             </div>
-            <p className="text-white/80 text-sm mt-8">
+            <p className="text-white/80 text-xs sm:text-sm mt-6 md:mt-8">
               Call us at{' '}
               <a href={contactInfo.phoneLink} className="underline hover:text-white">
                 {contactInfo.phone}

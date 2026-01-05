@@ -54,11 +54,11 @@ export default function Header() {
               className="w-12 h-12 md:w-14 md:h-14"
               priority
             />
-            <div className="ml-2 hidden sm:block">
-              <span className="text-lg md:text-xl font-montserrat font-bold text-pharmacy-red">
+            <div className="ml-2">
+              <span className="text-base sm:text-lg md:text-xl font-montserrat font-bold text-pharmacy-red">
                 River Park
               </span>
-              <span className="text-lg md:text-xl font-montserrat font-bold text-medical-blue ml-1">
+              <span className="text-base sm:text-lg md:text-xl font-montserrat font-bold text-medical-blue ml-1">
                 Pharmacy
               </span>
             </div>
