@@ -17,10 +17,10 @@ const accentColors = [
 
 interface TestimonialCardProps {
   name: string
-  role: string
+  role?: string
   rating: number
   text: string
-  image: string
+  image?: string
   index?: number
 }
 
@@ -42,23 +42,33 @@ export default function TestimonialCard({
         {/* Profile Image - Centered at top */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 pt-4 sm:pt-6">
           <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-3 sm:border-4 border-white shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 relative">
-            <Image
-              src={image}
-              alt={name}
-              width={80}
-              height={80}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none'
-                const fallback = e.currentTarget.parentElement?.querySelector('.fallback-initials')
-                if (fallback) fallback.classList.remove('hidden')
-              }}
-            />
-            <div className="fallback-initials hidden absolute inset-0 bg-gradient-to-br from-medical-blue to-medical-blue-dark flex items-center justify-center">
-              <span className="text-white font-montserrat font-bold text-lg sm:text-xl">
-                {initials}
-              </span>
-            </div>
+            {image ? (
+              <>
+                <Image
+                  src={image}
+                  alt={name}
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none'
+                    const fallback = e.currentTarget.parentElement?.querySelector('.fallback-initials')
+                    if (fallback) fallback.classList.remove('hidden')
+                  }}
+                />
+                <div className="fallback-initials hidden absolute inset-0 bg-gradient-to-br from-medical-blue to-medical-blue-dark flex items-center justify-center">
+                  <span className="text-white font-montserrat font-bold text-lg sm:text-xl">
+                    {initials}
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div className="absolute inset-0 bg-gradient-to-br from-medical-blue to-medical-blue-dark flex items-center justify-center">
+                <span className="text-white font-montserrat font-bold text-lg sm:text-xl">
+                  {initials}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -71,9 +81,11 @@ export default function TestimonialCard({
         </h3>
 
         {/* Role/Position */}
-        <p className="text-xs sm:text-sm text-gray-500 font-medium mb-2 sm:mb-3">
-          {role}
-        </p>
+        {role && (
+          <p className="text-xs sm:text-sm text-gray-500 font-medium mb-2 sm:mb-3">
+            {role}
+          </p>
+        )}
 
         {/* Star Rating */}
         <div className="flex justify-center gap-0.5 sm:gap-1 mb-3 sm:mb-5">

@@ -2,7 +2,7 @@
   "hero": {
     "title": "About Us",
     "titleHighlight": "Us",
-    "subtitle": "More than a pharmacy - we're your neighbors, committed to providing exceptional healthcare to our community since 2010."
+    "subtitle": "More than a pharmacy - we're your neighbors, committed to providing exceptional healthcare to our community since 2018."
   },
   "story": {
     "title": "Our Story",
@@ -33,8 +33,8 @@
   "team": [
     {
       "name": "Dr. Sarah Johnson",
-      "role": "Lead Pharmacist & Owner",
-      "bio": "With over 20 years of experience, Dr. Johnson founded River Park Pharmacy to provide the personalized care she believes every patient deserves.",
+      "role": "Lead Pharmacist",
+      "bio": "With over 20 years of experience, Dr. Johnson is dedicated to providing the personalized care she believes every patient deserves.",
       "image": "/images/team/pharmacist-1.jpg"
     },
     {
@@ -60,9 +60,21 @@
     "Free blood pressure clinics"
   ],
   "stats": [
-    { "value": "15+", "label": "Years Serving Community" },
-    { "value": "50K+", "label": "Prescriptions Filled Yearly" },
-    { "value": "10K+", "label": "Happy Patients" },
-    { "value": "100%", "label": "Commitment to Care" }
+    {
+      "value": "15+",
+      "label": "Years Serving Community"
+    },
+    {
+      "value": "50K+",
+      "label": "Prescriptions Filled Yearly"
+    },
+    {
+      "value": "10K+",
+      "label": "Happy Patients"
+    },
+    {
+      "value": "100%",
+      "label": "Commitment to Care"
+    }
   ]
 }

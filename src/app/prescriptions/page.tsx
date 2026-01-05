@@ -80,27 +80,27 @@ export default function PrescriptionsPage() {
       </section>
 
       {/* How It Works */}
-      <section className="section-padding bg-gray-50">
+      <section className="py-10 md:py-14 lg:py-16 bg-gray-50">
         <div className="container-custom">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="heading-2 text-gray-900 mb-4">How Refills Work</h2>
-            <p className="body-text max-w-2xl mx-auto">
+          <AnimatedSection className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-bold text-gray-900 mb-3 md:mb-4">How Refills Work</h2>
+            <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto">
               Our simple four-step process makes refilling your prescriptions
               quick and convenient.
             </p>
           </AnimatedSection>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {prescriptions.refillSteps.map((item, index) => (
               <AnimatedSection key={item.step} delay={index * 0.1}>
-                <div className="bg-white rounded-xl p-6 h-full shadow-md hover:shadow-lg transition-shadow">
-                  <div className="w-12 h-12 bg-pharmacy-red rounded-full flex items-center justify-center text-white font-montserrat font-bold text-lg mb-4">
+                <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 h-full shadow-md hover:shadow-lg transition-shadow">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-pharmacy-red rounded-full flex items-center justify-center text-white font-montserrat font-bold text-sm sm:text-base md:text-lg mb-3 md:mb-4">
                     {item.step}
                   </div>
-                  <h3 className="font-montserrat font-semibold text-lg text-gray-900 mb-2">
+                  <h3 className="font-montserrat font-semibold text-sm sm:text-base md:text-lg text-gray-900 mb-1 sm:mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -111,7 +111,7 @@ export default function PrescriptionsPage() {
       </section>
 
       {/* Refill Form Section */}
-      <section id="refill-form" className="section-padding bg-white scroll-mt-24">
+      <section id="refill-form" className="py-10 md:py-14 lg:py-16 bg-white scroll-mt-24">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <AnimatedSection className="text-center mb-12">
@@ -300,31 +300,33 @@ export default function PrescriptionsPage() {
       </section>
 
       {/* Transfer Section */}
-      <section id="transfer" className="section-padding bg-gray-50 scroll-mt-24">
+      <section id="transfer" className="py-10 md:py-14 lg:py-16 bg-gray-50 scroll-mt-24">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <AnimatedSection>
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-medical-blue rounded-2xl mb-6">
-                <RefreshCw className="w-8 h-8 text-white" />
+              <div className="text-center lg:text-left">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-medical-blue rounded-xl md:rounded-2xl mb-4 md:mb-6">
+                  <RefreshCw className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
+                </div>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-bold text-gray-900 mb-3 md:mb-4">
+                  Transfer Your Prescriptions
+                </h2>
+                <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6">
+                  Switching to River Park Pharmacy is simple. We handle the entire
+                  transfer process for you, contacting your previous pharmacy and
+                  verifying your insurance. You just need to let us know where
+                  your prescriptions are coming from.
+                </p>
               </div>
-              <h2 className="heading-2 text-gray-900 mb-4">
-                Transfer Your Prescriptions
-              </h2>
-              <p className="body-text mb-6">
-                Switching to River Park Pharmacy is simple. We handle the entire
-                transfer process for you, contacting your previous pharmacy and
-                verifying your insurance. You just need to let us know where
-                your prescriptions are coming from.
-              </p>
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-2 sm:space-y-3 mb-6 md:mb-8">
                 {prescriptions.transferBenefits.map((benefit, index) => (
                   <li key={index} className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-600">{benefit}</span>
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600 text-sm sm:text-base">{benefit}</span>
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button href="/contact">
                   Request Transfer
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -337,46 +339,46 @@ export default function PrescriptionsPage() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="font-montserrat font-semibold text-xl text-gray-900 mb-6">
+              <div className="bg-white rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-8 shadow-lg mt-6 lg:mt-0">
+                <h3 className="font-montserrat font-semibold text-lg sm:text-xl text-gray-900 mb-4 md:mb-6">
                   What You'll Need
                 </h3>
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                   <div className="flex items-start">
-                    <div className="w-10 h-10 bg-pharmacy-red/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                      <FileText className="w-5 h-5 text-pharmacy-red" />
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 bg-pharmacy-red/10 rounded-lg flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                      <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-pharmacy-red" />
                     </div>
                     <div>
-                      <p className="font-montserrat font-medium text-gray-900">
+                      <p className="font-montserrat font-medium text-sm sm:text-base text-gray-900">
                         Prescription Information
                       </p>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-gray-600 text-xs sm:text-sm">
                         Medication name, dosage, and quantity
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-10 h-10 bg-pharmacy-red/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                      <Pill className="w-5 h-5 text-pharmacy-red" />
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 bg-pharmacy-red/10 rounded-lg flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                      <Pill className="w-4 h-4 sm:w-5 sm:h-5 text-pharmacy-red" />
                     </div>
                     <div>
-                      <p className="font-montserrat font-medium text-gray-900">
+                      <p className="font-montserrat font-medium text-sm sm:text-base text-gray-900">
                         Previous Pharmacy Details
                       </p>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-gray-600 text-xs sm:text-sm">
                         Name, address, and phone number
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-10 h-10 bg-pharmacy-red/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                      <MessageCircle className="w-5 h-5 text-pharmacy-red" />
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 bg-pharmacy-red/10 rounded-lg flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                      <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-pharmacy-red" />
                     </div>
                     <div>
-                      <p className="font-montserrat font-medium text-gray-900">
+                      <p className="font-montserrat font-medium text-sm sm:text-base text-gray-900">
                         Your Contact Information
                       </p>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-gray-600 text-xs sm:text-sm">
                         So we can notify you when ready
                       </p>
                     </div>
@@ -389,7 +391,7 @@ export default function PrescriptionsPage() {
       </section>
 
       {/* Call-In Section */}
-      <section className="py-16 md:py-20 bg-pharmacy-red">
+      <section className="py-10 md:py-14 lg:py-16 bg-pharmacy-red">
         <div className="container-custom">
           <AnimatedSection className="text-center">
             <Phone className="w-12 h-12 text-white mx-auto mb-4" />
@@ -417,7 +419,7 @@ export default function PrescriptionsPage() {
       </section>
 
       {/* Support Message */}
-      <section className="section-padding bg-white">
+      <section className="py-10 md:py-14 lg:py-16 bg-white">
         <div className="container-custom">
           <AnimatedSection className="max-w-3xl mx-auto text-center">
             <div className="bg-blue-50 rounded-2xl p-8 md:p-12">
