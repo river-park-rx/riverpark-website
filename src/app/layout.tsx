@@ -19,7 +19,7 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://riverparkpharmacy.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.riverparkrx.com'),
   title: 'River Park Pharmacy | Trusted Local Pharmacy Care',
   description: 'River Park Pharmacy provides personalized prescription services, immunizations, and medication counseling to our local community. Your trusted neighborhood pharmacy.',
   keywords: 'pharmacy, prescription refill, transfer prescription, immunizations, medication counseling, community pharmacy, local pharmacy',
