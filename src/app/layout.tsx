@@ -25,12 +25,13 @@ export const metadata: Metadata = {
   keywords: 'pharmacy, prescription refill, transfer prescription, immunizations, medication counseling, community pharmacy, local pharmacy',
   icons: {
     icon: [
-      { url: '/images/mainLogo/favicon.png', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
     ],
-    apple: [
-      { url: '/images/mainLogo/favicon.png', type: 'image/png' },
-    ],
+    apple: '/apple-touch-icon.png',
   },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: 'River Park Pharmacy | Trusted Local Pharmacy Care',
     description: 'Your trusted neighborhood pharmacy providing personalized care and prescription services.',
