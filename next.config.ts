@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   poweredByHeader: false,
+  env: {
+    BUILD_TIME: new Date().toISOString(),
+  },
 }
 
 export default nextConfig
